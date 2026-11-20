@@ -1,12 +1,4 @@
 {
-  "framework": null,
-  "installCommand": "cd frondend && npm install",
-  "buildCommand": "cd frondend && npm run build",
-  "outputDirectory": "frondend/dist",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "installCommand": "if [ -d frondend ]; then cd frondend && npm install; else npm install; fi",
+  "buildCommand": "if [ -d frondend ]; then cd frondend && npm run build; else npm run build; fi"
 }

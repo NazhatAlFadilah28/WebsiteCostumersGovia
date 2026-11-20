@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GOVIA — Tiket Bus Online & Digital Boarding Pass</title>
+
+  <!-- ── Google Fonts: Plus Jakarta Sans & Inter ───────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- ── Material Symbols Outlined (Google Material Icons) ──────── -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- ── Midtrans Snap JS (Sandbox) ────────────────────────────── -->
+  <script type="text/javascript"
+    src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="SB-Mid-client-XXXXX"></script>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('govia_customer_theme') === 'dark' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        if (t === 'dark') document.documentElement.classList.add('dark');
+        document.documentElement.style.colorScheme = t;
+      } catch (e) {}
+    })();
+  </script>
+  <script type="module" crossorigin src="/assets/index-MVHBxk0n.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CzbHrA5p.css">
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>
