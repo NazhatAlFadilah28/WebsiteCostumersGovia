@@ -48,26 +48,68 @@ export default function SearchPage({ onNavigate }: SearchPageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Filter arah kota asal & kota tujuan (tersinkron dari halaman Jadwal & Rute)
+  // Filter arah kota asal & kota tujuan (kosong = tampilkan semua rute aktif dari database)
   const [selectedOriginCity, setSelectedOriginCity] = useState<string>(() => {
     try {
       const saved = JSON.parse(localStorage.getItem('govia_route_filter') || '{}');
-      return saved.asal_kota || 'Jakarta';
+      return saved.asal_kota || '';
     } catch {
-      return 'Jakarta';
+      return '';
+    }
+  });
+  const [selectedOriginTerminal, setSelectedOriginTerminal] = useState<string>(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('govia_route_filter') || '{}');
+      return saved.asal_terminal || '';
+    } catch {
+      return '';
     }
   });
   const [selectedDestCity, setSelectedDestCity] = useState<string>(() => {
     try {
       const saved = JSON.parse(localStorage.getItem('govia_route_filter') || '{}');
-      return saved.tujuan_kota || 'Surabaya';
+      return saved.tujuan_kota || '';
     } catch {
-      return 'Surabaya';
+      return '';
+    }
+  });
+  const [selectedDestTerminal, setSelectedDestTerminal] = useState<string>(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('govia_route_filter') || '{}');
+      return saved.tujuan_terminal || '';
+    } catch {
+      return '';
     }
   });
 
-  const originMeta = CITY_TERMINALS.find(c => c.kota.toLowerCase() === selectedOriginCity.toLowerCase()) || CITY_TERMINALS[0];
-  const destMeta = CITY_TERMINALS.find(c => c.kota.toLowerCase() === selectedDestCity.toLowerCase()) || CITY_TERMINALS[1];
+  const matchedOrigin = CITY_TERMINALS.find(
+    (c) => c.kota.toLowerCase() === selectedOriginCity.toLowerCase()
+  );
+  const matchedDest = CITY_TERMINALS.find(
+    (c) => c.kota.toLowerCase() === selectedDestCity.toLowerCase()
+  );
+  const isShowingAllRoutes = !selectedOriginCity && !selectedDestCity && !selectedOriginTerminal && !selectedDestTerminal;
+
+  const originMeta = {
+    kota: selectedOriginCity || matchedOrigin?.kota || 'Semua Kota',
+    terminal:
+      selectedOriginTerminal ||
+      matchedOrigin?.terminal ||
+      (selectedOriginCity ? `Terminal ${selectedOriginCity}` : 'Semua Terminal Asal'),
+    desc:
+      matchedOrigin?.desc ||
+      `Titik keberangkatan resmi bus AKAP wilayah ${selectedOriginCity || 'Indonesia'}.`,
+  };
+  const destMeta = {
+    kota: selectedDestCity || matchedDest?.kota || 'Semua Kota',
+    terminal:
+      selectedDestTerminal ||
+      matchedDest?.terminal ||
+      (selectedDestCity ? `Terminal ${selectedDestCity}` : 'Semua Terminal Tujuan'),
+    desc:
+      matchedDest?.desc ||
+      `Titik kedatangan resmi bus AKAP wilayah ${selectedDestCity || 'Indonesia'}.`,
+  };
 
   const [selectedOperators, setSelectedOperators] = useState<Record<string, boolean>>({});
   const toggleOperator = (busName: string) => {
@@ -208,12 +250,20 @@ export default function SearchPage({ onNavigate }: SearchPageProps) {
               <span className="search-tag-lintas">RUTE ANTARKOTA</span>
             </div>
             <h1 className="search-hero-title">
-              <span>{originMeta.terminal}</span>
-              <span className="arrow">&rarr;</span>
-              <span>{destMeta.terminal}</span>
+              {isShowingAllRoutes ? (
+                <span>Semua Rute &amp; Terminal Antarkota</span>
+              ) : (
+                <>
+                  <span>{originMeta.terminal}</span>
+                  <span className="arrow">&rarr;</span>
+                  <span>{destMeta.terminal}</span>
+                </>
+              )}
             </h1>
             <p className="search-hero-desc">
-              Menampilkan armada bus resmi berlisensi AKAP rute langsung dari {originMeta.kota} menuju {destMeta.kota} sesuai kapasitas bus masing-masing.
+              {isShowingAllRoutes
+                ? 'Menampilkan seluruh armada bus resmi berlisensi AKAP yang tersedia sesuai kapasitas bus masing-masing.'
+                : `Menampilkan armada bus resmi berlisensi AKAP rute langsung dari ${originMeta.kota} menuju ${destMeta.kota} sesuai kapasitas bus masing-masing.`}
             </p>
           </div>
         </div>
@@ -301,11 +351,16 @@ export default function SearchPage({ onNavigate }: SearchPageProps) {
                 <button
                   className="search-sidebar-reset"
                   onClick={() => {
+                    setSelectedOriginCity('');
+                    setSelectedOriginTerminal('');
+                    setSelectedDestCity('');
+                    setSelectedDestTerminal('');
                     setMaxPrice(2000000);
                     setSearchBus('');
                     setSelectedOperators({});
                     setFilterClass('ALL');
                     setActiveDateTab('all');
+                    localStorage.removeItem('govia_route_filter');
                   }}
                 >
                   Reset
@@ -515,7 +570,9 @@ export default function SearchPage({ onNavigate }: SearchPageProps) {
                     type="button"
                     onClick={() => {
                       setSelectedOriginCity('');
+                      setSelectedOriginTerminal('');
                       setSelectedDestCity('');
+                      setSelectedDestTerminal('');
                       setFilterClass('ALL');
                       setActiveDateTab('all');
                       setMaxPrice(2000000);

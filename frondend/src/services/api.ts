@@ -10,7 +10,7 @@
  * ============================================================
  */
 
-const BASE_URL = '/api';
+const BASE_URL = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
 
 /** Ambil token JWT dari localStorage */
 export function getToken(): string | null {

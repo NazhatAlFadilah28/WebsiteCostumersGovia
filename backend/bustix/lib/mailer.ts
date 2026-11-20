@@ -1,31 +1,35 @@
 import nodemailer from 'nodemailer';
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: Number(process.env.SMTP_PORT) || 587,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER || '',
-    pass: process.env.SMTP_PASS || '',
-  },
-});
+function getTransporter() {
+  const user = (process.env.SMTP_USER || '').trim();
+  const pass = (process.env.SMTP_PASS || '').replace(/\s+/g, '');
+  if (!user || !pass) return null;
+
+  return nodemailer.createTransport({
+    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: Number(process.env.SMTP_PORT) === 465,
+    auth: { user, pass },
+  });
+}
 
 export async function sendEmailCode(to: string, code: string): Promise<{ sent: boolean }> {
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+  const transporter = getTransporter();
+  if (!transporter) {
     console.log(`[DEV MODE] Kode verifikasi untuk ${to}: ${code}`);
     return { sent: false };
   }
 
   try {
     await transporter.sendMail({
-      from: `"Bustix Support" <${process.env.SMTP_USER}>`,
+      from: `"GOVIA Transport" <${process.env.SMTP_USER}>`,
       to,
-      subject: 'Kode Verifikasi Login Bustix',
+      subject: 'Kode Verifikasi Login GOVIA',
       html: `
         <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-          <h2 style="color: #4f46e5;">Kode Verifikasi Anda</h2>
-          <p>Gunakan kode verifikasi berikut untuk masuk ke akun Bustix Anda:</p>
-          <div style="background: #f3f4f6; padding: 15px; font-size: 24px; font-weight: bold; letter-spacing: 5px; text-align: center; border-radius: 8px; margin: 20px 0;">
+          <h2 style="color: #1B4285;">Kode Verifikasi Login GOVIA</h2>
+          <p>Gunakan kode verifikasi 6 digit berikut untuk masuk ke akun GOVIA Anda:</p>
+          <div style="background: #f3f4f6; padding: 15px; font-size: 28px; font-weight: bold; letter-spacing: 6px; text-align: center; border-radius: 8px; margin: 20px 0; color: #1B4285;">
             ${code}
           </div>
           <p>Kode ini berlaku selama 10 menit. Jangan berikan kode ini kepada siapapun.</p>
@@ -35,7 +39,7 @@ export async function sendEmailCode(to: string, code: string): Promise<{ sent: b
     return { sent: true };
   } catch (err) {
     console.error('Gagal kirim email:', err);
-    throw new Error('Gagal mengirim email verifikasi');
+    throw new Error('Gagal mengirim email verifikasi. Periksa SMTP_USER & App Password Gmail di .env.');
   }
 }
 
@@ -62,7 +66,8 @@ export interface TicketEmailPayload {
  * Kirim E-Ticket resmi lengkap dengan QR code & rincian ke Email Customer
  */
 export async function sendTicketEmail(payload: TicketEmailPayload): Promise<{ sent: boolean; message: string }> {
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+  const transporter = getTransporter();
+  if (!transporter) {
     console.log(`[DEV MODE] E-Ticket untuk ${payload.to} (${payload.kodeBooking}) siap dikirim.`);
     return {
       sent: false,

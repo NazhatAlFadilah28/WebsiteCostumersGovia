@@ -94,27 +94,30 @@ export async function POST(request: Request) {
 
     // 2. Verify OTP Code
     if (action === 'verify-code') {
-      if (!email) {
-        return NextResponse.json({ success: false, message: 'Email wajib diisi.' }, { status: 400 });
+      if (!email || !code) {
+        return NextResponse.json({ success: false, message: 'Email dan kode verifikasi wajib diisi.' }, { status: 400 });
       }
 
-      const res = await query('SELECT * FROM customers WHERE email = $1', [email]);
-      let customer;
+      const cleanEmail = String(email).trim().toLowerCase();
+      const cleanCode = String(code).trim();
+      const res = await query('SELECT * FROM customers WHERE LOWER(email) = $1', [cleanEmail]);
 
       if (res.rows.length === 0) {
-        const insertRes = await query(
-          'INSERT INTO customers (nama, email, no_hp, password, status) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-          [nama || email.split('@')[0], email, no_hp || '-', 'OTP_USER', 'aktif']
-        );
-        customer = insertRes.rows[0];
-      } else {
-        customer = res.rows[0];
-        if (action === 'verify-code') {
-          if (customer.verification_code && customer.verification_code !== code) {
-            return NextResponse.json({ success: false, message: 'Kode verifikasi salah.' }, { status: 400 });
-          }
-        }
+        return NextResponse.json({ success: false, message: 'Email belum meminta kode verifikasi. Silakan kirim kode terlebih dahulu.' }, { status: 400 });
       }
+
+      const customer = res.rows[0];
+      if (!customer.verification_code || String(customer.verification_code).trim() !== cleanCode) {
+        return NextResponse.json({ success: false, message: 'Kode verifikasi salah.' }, { status: 400 });
+      }
+      if (customer.verification_code_expires && new Date(customer.verification_code_expires).getTime() < Date.now()) {
+        return NextResponse.json({ success: false, message: 'Kode verifikasi sudah kedaluwarsa. Silakan minta kode baru.' }, { status: 400 });
+      }
+
+      await query(
+        'UPDATE customers SET verification_code = NULL, verification_code_expires = NULL WHERE id = $1',
+        [customer.id]
+      );
 
       const jwtToken = generateToken({
         id: customer.id,

@@ -111,18 +111,20 @@ export function subscribeCustomerNotifications(
 ): () => void {
   let primaryDocs: CustomerNotificationItem[] = [];
   let adminDocs: CustomerNotificationItem[] = [];
+  let backendDocs: CustomerNotificationItem[] = [];
   const seenKeys = new Set<string>();
   let initialized = false;
 
-  const mapDoc = (docSnap: any): CustomerNotificationItem | null => {
+  const mapDoc = (docSnap: { id: string; data: () => Record<string, unknown> }): CustomerNotificationItem | null => {
     const d = docSnap.data() || {};
     if (!isTargetedForCustomer(d)) return null;
 
+    const createdAtVal = d.createdAt as { toDate?: () => Date } | undefined;
     const iso =
-      d.createdAtIso ||
-      d.created_at ||
-      (d.createdAt && typeof d.createdAt.toDate === 'function'
-        ? d.createdAt.toDate().toISOString()
+      (typeof d.createdAtIso === 'string' && d.createdAtIso) ||
+      (typeof d.created_at === 'string' && d.created_at) ||
+      (createdAtVal && typeof createdAtVal.toDate === 'function'
+        ? createdAtVal.toDate().toISOString()
         : new Date().toISOString());
 
     const id = String(docSnap.id);
@@ -132,7 +134,7 @@ export function subscribeCustomerNotifications(
       id,
       title: String(d.judul || d.title || 'Pengumuman Resmi GOVIA'),
       message: String(d.pesan || d.message || '-'),
-      tipe: normalizeTipe(d.tipe || d.category),
+      tipe: normalizeTipe(String(d.tipe || d.category || 'info')),
       routeOrFleet: String(d.ruteAtauArmada || d.routeOrFleet || ''),
       sender: String(d.sender || 'Admin Govia'),
       createdAtIso: iso,
@@ -144,7 +146,7 @@ export function subscribeCustomerNotifications(
   const emitMerged = () => {
     const readIds = getCustomerReadNotifIds();
     const map = new Map<string, CustomerNotificationItem>();
-    for (const item of [...adminDocs, ...primaryDocs]) {
+    for (const item of [...backendDocs, ...adminDocs, ...primaryDocs]) {
       const key = `${item.title.trim().toLowerCase()}|${item.message.trim().toLowerCase()}|${item.createdAtIso.slice(0, 16)}`;
       if (!map.has(key)) {
         map.set(key, {
@@ -185,13 +187,56 @@ export function subscribeCustomerNotifications(
         const key = `${item.title.trim().toLowerCase()}|${item.message.trim().toLowerCase()}|${item.createdAtIso.slice(0, 16)}`;
         seenKeys.add(key);
       }
-      if (adminDocs.length > 0 || primaryDocs.length > 0) {
+      if (backendDocs.length > 0 || adminDocs.length > 0 || primaryDocs.length > 0) {
         initialized = true;
       }
     }
 
     onUpdate(merged);
   };
+
+  // Poll shared Supabase notifications via Costumer backend (/api/notifications)
+  const fetchBackendNotifications = async () => {
+    try {
+      const res = await fetch('/api/notifications');
+      if (!res.ok) return;
+      const json = (await res.json()) as {
+        data?: Array<{
+          id: string;
+          category?: string;
+          code?: string;
+          title?: string;
+          message?: string;
+          created_at?: string;
+        }>;
+      };
+      const readIds = getCustomerReadNotifIds();
+      backendDocs = (json.data || []).map((row) => {
+        const iso = row.created_at || new Date().toISOString();
+        const codeUpper = String(row.code || '').toUpperCase();
+        return {
+          id: String(row.id),
+          title: String(row.title || 'Pengumuman Resmi GOVIA'),
+          message: String(row.message || '-'),
+          tipe: normalizeTipe(row.category),
+          routeOrFleet: row.code && !['ADMIN-PUSAT', 'SUPERADMIN'].includes(codeUpper) ? row.code : '',
+          sender: codeUpper === 'SUPERADMIN' ? 'Superadmin GOVIA' : 'Admin GOVIA',
+          createdAtIso: iso,
+          timeLabel: formatRelativeTime(iso),
+          read: readIds.includes(String(row.id)),
+        };
+      });
+      emitMerged();
+      initialized = true;
+    } catch {
+      /* ignore network errors */
+    }
+  };
+
+  void fetchBackendNotifications();
+  const pollTimer = setInterval(() => {
+    void fetchBackendNotifications();
+  }, 6000);
 
   const qAdmin = query(
     collection(adminDb, 'notifications'),
@@ -228,6 +273,7 @@ export function subscribeCustomerNotifications(
   );
 
   return () => {
+    clearInterval(pollTimer);
     unsubAdmin();
     unsubPrimary();
   };
