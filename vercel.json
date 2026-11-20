@@ -1,0 +1,12 @@
+{
+  "framework": null,
+  "installCommand": "cd frondend && npm install",
+  "buildCommand": "cd frondend && npm run build",
+  "outputDirectory": "frondend/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
