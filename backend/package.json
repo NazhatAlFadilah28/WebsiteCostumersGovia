@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "dev": "npm --prefix bustix run dev",
+    "start": "npm --prefix bustix run start",
+    "build": "npm --prefix bustix run build"
+  },
+  "dependencies": {
+    "firebase": "^13.3.0"
+  }
+}

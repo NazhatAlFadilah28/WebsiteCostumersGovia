@@ -1,0 +1,29 @@
+# Dependencies
+**/node_modules/
+
+# Build & Framework Caches
+**/.next/
+**/dist/
+**/dist-ssr/
+**/out/
+**/build/
+**/*.tsbuildinfo
+backend/bustix/next-env.d.ts
+
+# Environment & Secrets (NEVER commit real keys/passwords)
+**/.env
+**/.env.*
+!**/.env.example
+
+# WhatsApp Session Credentials & Logs
+**/auth_info/
+**/*.log
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+*.local
+.idea/
+.vscode/*
+!.vscode/extensions.json
+

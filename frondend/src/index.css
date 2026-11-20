@@ -1,0 +1,1120 @@
+/**
+ * ============================================================
+ * GOVIA Global Design System — index.css
+ * ============================================================
+ * Light Theme (foto ke-2): Background putih bersih + Navy Blue
+ * Font: Plus Jakarta Sans (dari Google Fonts)
+ * Warna utama: Navy #1B4285 + Vibrant Orange #f97316
+ * ============================================================
+ */
+
+/* ── Import Google Fonts ───────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+/* ── Import Global Animations & Light Theme Variables ──────── */
+@import url('./Style/animations.css');
+
+/* ── CSS Custom Properties (Design Tokens GOVIA Transit System) ─── */
+:root {
+  /* GOVIA Brand Colors (Extracted directly from Official Logo) */
+  --govia-blue: #1B4285;
+  --govia-blue-dark: #12284D;
+  --govia-orange: #FA7808;
+  --govia-orange-hover: #e56b00;
+
+  /* Primary palette — GOVIA Royal Navy Blue */
+  --c-primary: #1B4285;
+  /* warna utama tombol, header, text brand */
+  --c-on-primary: #ffffff;
+  /* teks di atas primary */
+  --c-primary-container: #153770;
+  /* tombol filter aktif, badge */
+  --c-on-primary-container: #8dadff;
+  --c-primary-fixed: #dae2ff;
+  --c-primary-fixed-dim: #b1c5ff;
+  /* teks sub di atas background primary (dark) */
+
+  /* Secondary palette — GOVIA Vibrant Orange (CTA/Action) */
+  --c-orange: #FA7808;
+  /* tombol CTA utama "Pesan", "Masuk", "Bayar" */
+  --c-on-orange: #ffffff;
+  --c-secondary: #994700;
+  /* warna secondary text */
+  --c-secondary-container: #FA7808;
+  /* alias, sama dengan orange */
+
+  /* Tertiary palette — Dark Blue */
+  --c-tertiary: #12284D;
+  --c-tertiary-container: #1b4285;
+  --c-on-tertiary: #ffffff;
+  --c-on-tertiary-container: #73b2ff;
+
+  /* Surface palette — background dan kartu */
+  --c-surface: #f8f9ff;
+  /* latar halaman */
+  --c-surface-lowest: #ffffff;
+  /* kartu, input field */
+  --c-surface-container-low: #eff4ff;
+  /* section latar muda */
+  --c-surface-container: #e6eeff;
+  /* chip, latar badge */
+  --c-surface-container-high: #dee9fc;
+  /* hover state */
+  --c-surface-container-highest: #d9e3f6;
+  /* border kartu */
+  --c-surface-variant: #d9e3f6;
+
+  /* On-surface (teks/ikon di atas latar terang) */
+  --c-on-surface: #121c2a;
+  /* teks utama */
+  --c-on-surface-variant: #434652;
+  /* teks sekunder, label */
+
+  /* Outline (border, separator) */
+  --c-outline: #747783;
+  /* placeholder text, border lemah */
+  --c-outline-variant: #c4c6d3;
+  /* border kartu */
+
+  /* Semantic colors */
+  --c-error: #ba1a1a;
+  --c-error-container: #ffdad6;
+  --c-success: #16a34a;
+  --c-warning: #f59e0b;
+
+  /* Spacing (sesuai Stitch spacing scale) */
+  --s-xs: 0.25rem;
+  /*  4px */
+  --s-sm: 0.5rem;
+  /*  8px */
+  --s-md: 1rem;
+  /* 16px */
+  --s-lg: 1.5rem;
+  /* 24px */
+  --s-xl: 2.5rem;
+  /* 40px */
+  --m-sm: 1rem;
+  /* margin horizontal mobile */
+  --m: 2rem;
+  /* margin horizontal desktop */
+
+  /* Border radius */
+  --r-sm: 0.25rem;
+  /* 4px */
+  --r-md: 0.5rem;
+  /* 8px */
+  --r-lg: 0.75rem;
+  /* 12px — radius utama input & kartu */
+  --r-xl: 1rem;
+  /* 16px — kartu besar */
+  --r-full: 9999px;
+  /* pill/badge */
+}
+
+/* ── Reset & Base ──────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Website Global Wallpaper (background.jpg with reduced opacity) ─── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.15; /* Transparan & opacity dikurangi */
+  pointer-events: none;
+  z-index: 0;
+}
+
+body {
+  position: relative;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--c-on-surface);
+  background-color: #f4f7fc;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Biarkan wallpaper terlihat di latar belakang seluruh halaman ── */
+.cb-page-container,
+.search-page-container,
+.tkt-page-container,
+.seat-page-container,
+.pay-page-container,
+.ord-page-container,
+.jdw-page-container,
+.pkp-page-container,
+.login-page-container,
+.reg-page-container,
+.lp-root {
+  background-color: transparent !important;
+}
+
+/* ── GOVIA Brand Typography & Split-Color 'V' ──────────────── */
+.govia-brand-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  user-select: none;
+}
+
+.govia-blue {
+  color: var(--govia-blue, #1B4285);
+}
+
+.govia-v {
+  background: linear-gradient(115deg, #1B4285 46%, #FA7808 54%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-weight: 900;
+}
+
+.govia-orange {
+  color: var(--govia-orange, #FA7808);
+}
+
+
+/* ── Scrollbar hidden ──────────────────────────────────────── */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+}
+
+/* ── Material Symbols Outlined ─────────────────────────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ============================================================
+   LAYOUT CONTAINERS
+   Wrapper utama untuk setiap halaman
+   ============================================================ */
+
+/* Wrapper halaman: flex column penuh layar */
+.bustix-page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--c-surface);
+  max-width: 480px;
+  /* maksimal lebar konten di desktop */
+  margin: 0 auto;
+  /* center di desktop */
+  width: 100%;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+  /* bayangan di desktop */
+}
+
+/* ============================================================
+   HEADER
+   Fixed di atas, blur glassmorphism, shadow tipis
+   Tinggi: 64px (normal) atau 112px (dengan search bar)
+   ============================================================ */
+
+.bustix-header {
+  position: fixed;
+  top: 0;
+  /* Agar fixed header mengikuti max-width bustix-page di desktop */
+  width: 100%;
+  max-width: 480px;
+  z-index: 50;
+  background: rgba(248, 249, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+  padding-top: env(safe-area-inset-top, 0px);
+  /* iPhone notch safe area */
+}
+
+.bustix-header-inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 var(--m-sm);
+}
+
+.bustix-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.bustix-header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Logo BusTix di header */
+.bustix-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Teks nama brand di sebelah logo */
+.bustix-header-title {
+  display: flex;
+  flex-direction: column;
+  padding-left: 4px;
+  min-width: 0;
+}
+
+.bustix-brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-primary);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.bustix-brand-sub {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-on-surface-variant);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* Tombol ikon di header (back, chatbot, dll) */
+.bustix-icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-full);
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-primary);
+  cursor: pointer;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.bustix-icon-btn:hover {
+  background: var(--c-surface-container-high);
+}
+
+/* Avatar profil customer di header (lingkaran navy) */
+.bustix-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-full);
+  background: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* ============================================================
+   MAIN CONTENT AREA
+   ============================================================ */
+
+/* Area main konten, padding top sesuai tinggi header */
+.bustix-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 64px;
+  /* tinggi header standar */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--c-surface);
+}
+
+/* Wrapper konten dalam main dengan padding horizontal */
+.bustix-content-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 var(--m-sm);
+  padding-bottom: var(--s-xl);
+}
+
+/* ============================================================
+   BADGE & CHIPS
+   ============================================================ */
+
+/* Badge pill (misal: "AKAP & Pariwisata Resmi") */
+.bustix-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--r-full);
+  background: var(--c-surface-container-high);
+  color: var(--c-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 12px;
+}
+
+/* ============================================================
+   DIVIDER (garis pemisah dengan teks di tengah)
+   ============================================================ */
+
+.bustix-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: var(--s-lg) 0;
+}
+
+.bustix-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--c-surface-container-high);
+}
+
+.bustix-divider-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-on-surface-variant);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   FORM ELEMENTS
+   ============================================================ */
+
+/* Wrapper field: label + input */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Label field */
+.form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-on-surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.form-label-hint {
+  font-size: 11px;
+  color: var(--c-on-surface-variant);
+  font-weight: 400;
+}
+
+/* Baris label + link (misal "Kata Sandi" + "Lupa Kata Sandi?") */
+.form-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Input wrapper (posisi relatif untuk ikon dan tombol toggle) */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input utama — rounded-xl bg putih dengan shadow tipis */
+.bustix-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 1rem 0 2.75rem;
+  /* padding kiri untuk ikon */
+  background: var(--c-surface-lowest);
+  border: none;
+  border-radius: var(--r-lg);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: var(--c-on-surface);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  outline: none;
+  transition: box-shadow 0.15s;
+}
+
+.bustix-input::placeholder {
+  color: var(--c-outline);
+}
+
+.bustix-input:focus {
+  box-shadow: 0 0 0 2px var(--c-primary), 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Ikon di sisi kiri input (material symbol) */
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--c-primary);
+  font-size: 20px !important;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Tombol toggle show/hide password */
+.password-toggle {
+  position: absolute;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--c-outline);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: color 0.15s;
+}
+
+.password-toggle:hover {
+  color: var(--c-primary);
+}
+
+/* Kotak error form */
+.form-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--c-error-container);
+  border-radius: var(--r-lg);
+  color: var(--c-error);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+/* CTA Utama — Oranye (Masuk, Pesan, Bayar) */
+.btn-cta-orange {
+  width: 100%;
+  height: 52px;
+  border-radius: var(--r-lg);
+  background: var(--c-orange);
+  color: white;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s, box-shadow 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(251, 120, 0, 0.3);
+  margin-top: var(--s-xs);
+}
+
+.btn-cta-orange:hover {
+  filter: brightness(0.92);
+  box-shadow: 0 6px 16px rgba(251, 120, 0, 0.4);
+}
+
+.btn-cta-orange:active {
+  transform: scale(0.98);
+}
+
+.btn-cta-orange:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Tombol Google login — putih dengan shadow */
+.btn-google {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: var(--r-lg);
+  background: var(--c-surface-lowest);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: transform 0.1s, box-shadow 0.15s;
+}
+
+.btn-google:active {
+  transform: scale(0.99);
+}
+
+.btn-google:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.google-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-full);
+  background: var(--c-surface-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   CHECKBOX CUSTOM
+   Persis seperti Stitch: kotak biru navy dengan checkmark putih
+   ============================================================ */
+
+.bustix-checkbox-hidden {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.bustix-custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--c-surface-container-high);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+/* Tampilkan centang saat checked */
+.bustix-checkbox-hidden:checked+.bustix-custom-checkbox {
+  background: var(--c-primary);
+}
+
+.bustix-custom-checkbox-orange {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--c-surface-container-high);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bustix-checkbox-hidden:checked+.bustix-custom-checkbox-orange {
+  background: var(--c-orange);
+}
+
+/* Checkbox biasa (non-custom) */
+.bustix-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--c-orange);
+  cursor: pointer;
+}
+
+/* ============================================================
+   LOGIN PAGE SPECIFIC
+   ============================================================ */
+
+.login-intro {
+  width: 100%;
+  padding-top: var(--s-md);
+  padding-bottom: var(--s-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: var(--c-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.login-desc {
+  font-size: 14px;
+  color: var(--c-on-surface-variant);
+  max-width: 340px;
+  margin-top: 4px;
+  line-height: 20px;
+}
+
+.social-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-remember-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+}
+
+.remember-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 12px;
+  color: var(--c-on-surface-variant);
+  font-weight: 500;
+}
+
+.ssl-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--c-tertiary);
+  font-weight: 700;
+}
+
+.forgot-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-primary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.forgot-link:hover {
+  color: var(--c-secondary);
+}
+
+.login-footer {
+  width: 100%;
+  margin-top: var(--s-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.legal-text {
+  font-size: 11px;
+  color: var(--c-outline);
+  max-width: 320px;
+  line-height: 16px;
+}
+
+.legal-link {
+  color: var(--c-on-surface-variant);
+  text-decoration: underline;
+}
+
+.legal-link:hover {
+  color: var(--c-primary);
+}
+
+.link-orange {
+  font-weight: 600;
+  color: var(--c-orange);
+  text-decoration: none;
+}
+
+.link-orange:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   REGISTER PAGE SPECIFIC
+   ============================================================ */
+
+.register-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--c-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.register-desc {
+  font-size: 14px;
+  color: var(--c-on-surface-variant);
+  line-height: 20px;
+}
+
+/* ============================================================
+   SEARCH PAGE SPECIFIC — Bus Cards
+   ============================================================ */
+
+/* Kartu hasil pencarian bus */
+.bus-card {
+  background: var(--c-surface-lowest);
+  border: 1px solid var(--c-outline-variant);
+  border-radius: var(--r-lg);
+  padding: 14px 14px 0;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.bus-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 40, 105, 0.08);
+}
+
+.bus-card:active {
+  transform: scale(0.995);
+}
+
+.bus-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.bus-card-operator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bus-operator-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--c-surface-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Badge kelas bus (Eksekutif, Sleeper, dll) */
+.class-badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+  background: var(--c-surface-container);
+  color: var(--c-on-surface-variant);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.class-badge-sleeper {
+  background: var(--c-primary-container);
+  color: white;
+}
+
+/* Timeline rute bus (kota asal → durasi → kota tujuan) */
+.route-timeline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.route-point {
+  flex: 0 0 auto;
+  min-width: 60px;
+}
+
+.route-time {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-on-surface);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.route-city {
+  font-size: 11px;
+  color: var(--c-on-surface-variant);
+  line-height: 14px;
+  margin-top: 2px;
+}
+
+.route-middle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.route-line {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--c-primary), var(--c-orange));
+  border-radius: 1px;
+  position: relative;
+}
+
+/* Footer kartu bus: fasilitas + sisa kursi + tombol */
+.bus-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--c-surface-container-high);
+  padding: 10px 0;
+  margin-top: 4px;
+}
+
+/* Badge sisa kursi */
+.seat-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+}
+
+.seat-badge-warning {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.seat-badge-ok {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* ============================================================
+   SEAT MAP — Denah Kursi Bus
+   ============================================================ */
+
+/* Satu node kursi di denah bus */
+.seat-node {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer;
+  border: 1.5px solid var(--c-outline-variant);
+  background: white;
+  color: var(--c-on-surface);
+  transition: transform 0.1s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.seat-node:active {
+  transform: scale(0.88);
+}
+
+/* Kursi yang dipilih (oranye) */
+.seat-node.seat-selected {
+  background: var(--c-orange);
+  border-color: #e06c00;
+  color: white;
+  box-shadow: 0 2px 8px rgba(251, 120, 0, 0.3);
+}
+
+/* Kursi yang sudah terisi (abu-abu) */
+.seat-node.seat-occupied {
+  background: var(--c-surface-container-high);
+  border-color: var(--c-surface-container-highest);
+  color: var(--c-outline);
+  cursor: not-allowed;
+}
+
+/* Kursi khusus wanita (ungu muda) */
+.seat-node.seat-ladies {
+  background: #ddd6fe;
+  border-color: #8b5cf6;
+  color: #6d28d9;
+}
+
+/* ============================================================
+   PAYMENT PAGE — Timer & Payment Methods
+   ============================================================ */
+
+.payment-method-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--c-surface-lowest);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--c-outline-variant);
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.payment-method-card.active {
+  border-color: var(--c-primary);
+  border-width: 2px;
+  box-shadow: 0 2px 12px rgba(0, 40, 105, 0.1);
+}
+
+/* ============================================================
+   CHATBOT PAGE — Chat Bubbles
+   ============================================================ */
+
+/* Bubble dari BusBot (kiri, latar abu muda) */
+.chat-bubble-bot {
+  background: var(--c-surface-container-low);
+  border-radius: 4px 12px 12px 12px;
+  padding: 12px 14px;
+  max-width: 80%;
+  color: var(--c-on-surface);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Bubble dari customer (kanan, latar navy) */
+.chat-bubble-user {
+  background: var(--c-primary);
+  border-radius: 12px 4px 12px 12px;
+  padding: 12px 14px;
+  max-width: 80%;
+  color: white;
+  font-size: 14px;
+  line-height: 20px;
+  align-self: flex-end;
+}
+
+/* ============================================================
+   LOADING SPINNER
+   ============================================================ */
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: var(--r-full);
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animasi typing indicator chatbot */
+@keyframes bounce-dot {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Desktop & Tablet
+   Tampilan mobile-first, di desktop dibatasi max-width 480px
+   dan diletakkan di tengah layar dengan shadow
+   ============================================================ */
+
+@media (min-width: 640px) {
+
+  /* Di layar lebih lebar dari 640px:
+     tampilkan background berbeda di belakang app mobile */
+  body {
+    background: linear-gradient(135deg, #e6eeff 0%, #f8f9ff 100%);
+  }
+
+  /* App tetap di tengah dengan lebar maksimal 480px */
+  .bustix-page {
+    min-height: 100dvh;
+    box-shadow: 0 8px 40px rgba(0, 40, 105, 0.15), 0 0 0 1px rgba(196, 198, 211, 0.3);
+    border-radius: 0;
+    /* tidak perlu radius di mobile penuh */
+  }
+
+  /* Header fixed mengikuti max-width bustix-page */
+  .bustix-header {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 1024px) {
+
+  /* Di desktop, tampilkan preview app di tengah layar */
+  .bustix-page {
+    border-radius: 24px;
+    min-height: calc(100vh - 48px);
+    margin: 24px auto;
+  }
+}

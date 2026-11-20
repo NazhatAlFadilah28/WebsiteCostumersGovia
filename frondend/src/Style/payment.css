@@ -1,0 +1,913 @@
+/**
+ * ============================================================
+ * BusTix Midtrans Online Payment Stylesheet — payment.css
+ * ============================================================
+ * Desain CSS presisi untuk Halaman Kasir Digital & Pembayaran Midtrans
+ * ============================================================
+ */
+
+@import url('./animations.css');
+
+:root {
+  --pay-primary: #1B4285;
+  --pay-primary-hover: #153770;
+  --pay-orange: #f97316;
+  --pay-orange-hover: #ea580c;
+  --pay-surface: #f1f5f9;
+  --pay-card-bg: #ffffff;
+  --pay-border: #e2e8f0;
+  --pay-border-blue: #d9e3f6;
+  --pay-text-main: #0f172a;
+  --pay-text-sub: #475569;
+  --pay-text-muted: #64748b;
+  --pay-text-light: #94a3b8;
+  --pay-green: #16a34a;
+  --pay-blue-light: #eff4ff;
+}
+
+/* ── Container Utama Halaman ─────────────────────────────────── */
+.pay-page-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--pay-surface);
+  color: var(--pay-text-main);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.45s ease-out both;
+}
+
+.pay-main-content {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3.5rem 1rem;
+  box-sizing: border-box;
+}
+
+/* ── Top Bar Stepper & Security Pill ─────────────────────────── */
+.pay-top-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.pay-security-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #1B4285;
+}
+
+.pay-seat-reserve-note {
+  color: #ea580c;
+  font-weight: 700;
+}
+
+/* Horizontal 4-Step Bar */
+.pay-stepper-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1px solid var(--pay-border);
+  border-radius: 1rem;
+  padding: 0.6rem 0.85rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 650px) {
+  .pay-stepper-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pay-step-node {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.65rem;
+}
+
+.pay-step-node.active {
+  background: #1B4285;
+  color: #ffffff;
+}
+
+.pay-step-badge {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 900;
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.pay-step-node.completed .pay-step-badge {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.pay-step-node.active .pay-step-badge {
+  background: #f97316;
+  color: #ffffff;
+}
+
+.pay-step-text span {
+  display: block;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.03em;
+}
+
+.pay-step-node.active .pay-step-text span {
+  color: #93c5fd;
+}
+
+.pay-step-text h5 {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+}
+
+.pay-step-node.active .pay-step-text h5 {
+  color: #ffffff;
+}
+
+/* ── Timer Countdown Alert Banner ────────────────────────────── */
+.pay-timer-banner {
+  background: #ffffff;
+  border: 1.5px solid #fed7aa;
+  border-radius: 1.25rem;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 4px 18px -2px rgba(251, 120, 0, 0.08);
+  margin-bottom: 1.75rem;
+}
+
+.pay-timer-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pay-timer-icon-box {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: #f97316;
+  color: #ffffff;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.pay-timer-text h4 {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0 0 0.15rem 0;
+}
+
+.pay-timer-text h4 span.tag {
+  font-size: 0.65rem;
+  background: #ffedd5;
+  color: #c2410c;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  margin-left: 0.35rem;
+}
+
+.pay-timer-text p {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.pay-timer-digits {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-align: center;
+}
+
+.pay-digit-box {
+  background: #f8faff;
+  border: 1.5px solid #d9e3f6;
+  border-radius: 0.65rem;
+  padding: 0.4rem 0.65rem;
+  min-width: 2.5rem;
+}
+
+.pay-digit-box span.num {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #1B4285;
+  line-height: 1;
+}
+
+.pay-digit-box span.lbl {
+  display: block;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.pay-digit-colon {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #1B4285;
+}
+
+/* ── Main 2-Column Grid (Payment Methods & Invoice Invoice) ─── */
+.pay-grid-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .pay-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Kolom Kiri: Metode Pembayaran Midtrans ───────────────────── */
+.pay-methods-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pay-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.pay-sub-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+.pay-title-main {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #1B4285;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.pay-auto-verif-badge {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.3rem 0.65rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Accordion Accordion Method Card */
+.pay-method-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1.5px solid var(--pay-border);
+  box-shadow: 0 4px 18px -2px rgba(0, 40, 105, 0.04);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.pay-method-card.active {
+  border-color: #1B4285;
+  box-shadow: 0 6px 20px -2px rgba(0, 40, 105, 0.1);
+}
+
+.pay-method-header {
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: #ffffff;
+  transition: background 0.15s ease;
+}
+
+.pay-method-header:hover {
+  background: #f8faff;
+}
+
+.pay-method-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.pay-method-icon-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.65rem;
+  background: #1B4285;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.pay-method-icon-box.va {
+  background: #eff4ff;
+  color: #1B4285;
+  border: 1px solid #d9e3f6;
+}
+
+.pay-method-icon-box.wallet {
+  background: #eff6ff;
+  color: #0284c7;
+  border: 1px solid #d9e3f6;
+}
+
+.pay-method-icon-box.card {
+  background: #eff6ff;
+  color: #475569;
+  border: 1px solid #d9e3f6;
+}
+
+.pay-method-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.pay-method-title-row h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+}
+
+.pay-rec-badge {
+  background: #f97316;
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.25rem;
+}
+
+.pay-3d-badge {
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.25rem;
+  border: 1px solid #bfdbfe;
+}
+
+.pay-method-sub-desc {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin: 0.15rem 0 0 0;
+}
+
+/* QRIS Body Inside Card */
+.pay-qris-body {
+  padding: 1.25rem;
+  border-top: 1px solid #f1f5f9;
+  background: #f8faff;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .pay-qris-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pay-qris-box {
+  background: #ffffff;
+  border: 1.5px solid #d9e3f6;
+  border-radius: 0.85rem;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 40, 105, 0.05);
+}
+
+.pay-qris-top-logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin-bottom: 0.5rem;
+}
+
+.pay-qris-qr-img {
+  width: 130px;
+  height: 130px;
+  background: #ffffff;
+  padding: 4px;
+  border-radius: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.pay-qris-nmid {
+  font-size: 0.58rem;
+  color: #64748b;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.pay-download-qr-btn {
+  width: 100%;
+  background: #eff4ff;
+  border: 1px solid #d9e3f6;
+  color: #1B4285;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.pay-qris-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pay-qris-instructions h5 {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+}
+
+.pay-qris-instructions p.sub {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.pay-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pay-step-inst-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.68rem;
+  color: #334155;
+  line-height: 1.35;
+}
+
+.pay-step-inst-num {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: #1B4285;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.pay-supported-logos-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+}
+
+.pay-app-pill {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.3rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #1B4285;
+}
+
+/* Submit Action Button Big Orange */
+.pay-action-btn-row {
+  margin-top: 1rem;
+}
+
+.pay-submit-big-btn {
+  width: 100%;
+  height: 3.25rem;
+  background: #f97316;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(251, 120, 0, 0.35);
+  transition: all 0.2s ease;
+}
+
+.pay-submit-big-btn:hover {
+  background: #e66e00;
+  transform: translateY(-1px);
+}
+
+.pay-security-note-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+/* ── Kolom Kanan: Detail Pemesanan & Invoice ─────────────────── */
+.pay-invoice-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pay-invoice-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid var(--pay-border);
+  box-shadow: 0 4px 20px -2px rgba(0, 40, 105, 0.06);
+  overflow: hidden;
+}
+
+/* Header Dark Blue */
+.pay-invoice-header {
+  background: #1B4285;
+  color: #ffffff;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pay-inv-code-title {
+  font-size: 0.65rem;
+  color: #93c5fd;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pay-inv-code-val {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  font-family: monospace;
+  letter-spacing: 0.02em;
+}
+
+.pay-inv-status-tag {
+  background: #f97316;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.35rem;
+  text-align: right;
+}
+
+.pay-inv-status-tag small {
+  display: block;
+  font-size: 0.55rem;
+  color: #ffedd5;
+}
+
+.pay-invoice-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Operator Mini Box */
+.pay-operator-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 1rem;
+}
+
+.pay-operator-img-box {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.65rem;
+  background: #1B4285;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.pay-operator-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pay-operator-title-row h4 {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #1B4285;
+  margin: 0;
+}
+
+.pay-operator-sub {
+  font-size: 0.65rem;
+  color: #64748b;
+  margin: 0.15rem 0 0.35rem 0;
+}
+
+.pay-seat-badge-pill {
+  background: #eff4ff;
+  border: 1px solid #d9e3f6;
+  color: #1B4285;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Timeline Route Small */
+.pay-route-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  padding-left: 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 1.15rem;
+}
+
+.pay-route-timeline::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 5px;
+  bottom: 18px;
+  width: 2px;
+  background: #cbd5e1;
+}
+
+.pay-timeline-stop {
+  position: relative;
+}
+
+.pay-timeline-stop .dot {
+  position: absolute;
+  left: -1.25rem;
+  top: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1B4285;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px #1B4285;
+}
+
+.pay-timeline-stop .dot.dest {
+  background: #f97316;
+  box-shadow: 0 0 0 1px #f97316;
+}
+
+.pay-timeline-stop h5 {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.pay-timeline-stop p {
+  font-size: 0.65rem;
+  color: #64748b;
+  margin: 0.1rem 0 0 0;
+}
+
+/* Breakdown Line Items */
+.pay-breakdown-section h5 {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0 0 0.65rem 0;
+}
+
+.pay-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pay-breakdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.pay-breakdown-item span.val {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.pay-breakdown-item span.val.free {
+  color: #16a34a;
+  font-weight: 800;
+}
+
+/* Total Box Big */
+.pay-total-card-box {
+  background: #f8faff;
+  border: 1px solid #d9e3f6;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pay-total-left span {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #1B4285;
+  text-transform: uppercase;
+}
+
+.pay-total-left small {
+  display: block;
+  font-size: 0.58rem;
+  color: #64748b;
+}
+
+.pay-total-amount-val {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #1B4285;
+  letter-spacing: -0.02em;
+}
+
+/* Guarantee Card Bottom */
+.pay-sah-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.65rem;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.68rem;
+  color: #1e3a8a;
+  line-height: 1.35;
+}
+
+.pay-helpdesk-pill {
+  background: #f8faff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pay-helpdesk-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1B4285;
+}
+
+.pay-helpdesk-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1B4285;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.3rem 0.65rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------
+   RESPONSIVE HP KECIL � Payment Page (=600px, =480px)
+   -------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .pay-timer-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .pay-timer-left {
+    width: 100%;
+  }
+
+  .pay-timer-digits {
+    align-self: flex-start;
+    gap: 0.35rem;
+  }
+
+  .pay-digit-box {
+    min-width: 2.15rem;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .pay-digit-box span.num,
+  .pay-digit-colon {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pay-top-info-row {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .pay-timer-text h4 {
+    font-size: 0.875rem;
+  }
+
+  .pay-timer-text p {
+    font-size: 0.68rem;
+  }
+
+  .pay-total-amount-val {
+    font-size: 1.25rem;
+  }
+}

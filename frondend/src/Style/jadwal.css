@@ -1,0 +1,1150 @@
+/**
+ * ============================================================
+ * GOVIA Schedules & Route Directory Stylesheet — jadwal.css
+ * ============================================================
+ * Light Theme (foto ke-2) — Background putih bersih + Navy
+ * ============================================================
+ */
+@import url('./animations.css');
+
+:root {
+  --jdw-primary:       #1B4285;
+  --jdw-primary-hover: #0f2a55;
+  --jdw-orange:        #f97316;
+  --jdw-orange-hover:  #ea6c10;
+  --jdw-surface:       #f1f5f9;
+  --jdw-card-bg:       #ffffff;
+  --jdw-border:        #e2e8f0;
+  --jdw-border-blue:   #bfdbfe;
+  --jdw-text-main:     #0f172a;
+  --jdw-text-sub:      #334155;
+  --jdw-text-muted:    #64748b;
+  --jdw-text-light:    #94a3b8;
+  --jdw-blue-tag:      #eff6ff;
+  --jdw-green:         #16a34a;
+}
+
+/* ── Container Utama Halaman ─────────────────────────────────── */
+.jdw-page-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--jdw-surface);
+  color: var(--jdw-text-main);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.45s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+.jdw-main-content {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 1rem 3.5rem 1rem;
+  box-sizing: border-box;
+}
+
+/* ── Hero Banner Section (Direktori Eksplorasi Antarkota) ────── */
+.jdw-hero-card {
+  background: linear-gradient(135deg, #0f2a55 0%, #1B4285 55%, #2563eb 100%);
+  background-size: 200% 200%;
+  animation: slideDown 0.5s cubic-bezier(.22,.68,0,1.2) both, gradientShift 10s ease infinite;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 32px -5px rgba(27,66,133,0.3);
+  margin-bottom: -2.5rem;
+  z-index: 1;
+  transition: box-shadow 0.3s ease;
+}
+.jdw-hero-card:hover {
+  box-shadow: 0 16px 44px -5px rgba(27,66,133,0.38);
+}
+
+.jdw-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.jdw-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #93c5fd;
+}
+
+.jdw-breadcrumbs span.active {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.jdw-breadcrumbs .separator {
+  color: #60a5fa;
+  font-size: 0.7rem;
+}
+
+.jdw-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.jdw-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f97316;
+}
+
+.jdw-hero-body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.5rem;
+}
+
+.jdw-hero-left {
+  max-width: 650px;
+}
+
+.jdw-hero-sub-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.jdw-hero-title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem 0;
+}
+
+.jdw-hero-desc {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.jdw-status-tol-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 0.75rem 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.jdw-status-tol-text span {
+  display: block;
+  font-size: 0.62rem;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.jdw-status-tol-text h4 {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+}
+
+.jdw-status-tol-icon {
+  width: 2rem;
+  height: 2rem;
+  background: #f97316;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Interactive Search & Route Input Form Card ──────────────── */
+.jdw-search-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid var(--jdw-border);
+  box-shadow: 0 8px 30px -4px rgba(0, 40, 105, 0.08);
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.75rem;
+}
+
+.jdw-form-row {
+  display: grid;
+  grid-template-columns: 1.2fr auto 1.2fr 1fr 1fr;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 960px) {
+  .jdw-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.jdw-input-box {
+  background: #f8faff;
+  border: 1px solid #d9e3f6;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  transition: all 0.2s ease;
+}
+
+.jdw-input-box:focus-within {
+  border-color: #1B4285;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 40, 105, 0.08);
+}
+
+.jdw-input-label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.jdw-input-label.origin {
+  color: #1B4285;
+}
+
+.jdw-input-label.dest {
+  color: #f97316;
+}
+
+.jdw-input-field {
+  border: none;
+  background: transparent;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #0f172a;
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+}
+
+.jdw-input-field::placeholder {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.jdw-swap-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid #d9e3f6;
+  background: #ffffff;
+  color: #1B4285;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 40, 105, 0.08);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+.jdw-swap-btn:hover {
+  background: #eff4ff;
+  border-color: #1B4285;
+  transform: rotate(180deg);
+}
+
+/* User Nama & NIS Secondary Input Box */
+.jdw-user-info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  .jdw-user-info-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Bottom Bar Inside Search Card */
+.jdw-search-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.jdw-date-shortcut-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.jdw-shortcut-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-right: 0.25rem;
+}
+
+.jdw-shortcut-btn {
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.jdw-shortcut-btn.active {
+  background: #1B4285;
+  color: #ffffff;
+  border-color: #1B4285;
+}
+
+.jdw-submit-btn {
+  background: #f97316;
+  color: #ffffff;
+  border: none;
+  padding: 0.65rem 1.5rem;
+  border-radius: 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 12px rgba(251, 120, 0, 0.3);
+  transition: all 0.15s ease;
+}
+
+.jdw-submit-btn:hover {
+  background: #e66e00;
+  transform: translateY(-1px);
+}
+
+/* ── Content Grid: 5 Checkpoints & Route Map/Facilities ─────── */
+.jdw-details-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid var(--jdw-border);
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 40, 105, 0.05);
+}
+
+.jdw-details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.jdw-details-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #1B4285;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.jdw-time-zone-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.jdw-details-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .jdw-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Checkpoints Timeline List ───────────────────────────────── */
+.jdw-checkpoints-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.jdw-checkpoint-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.jdw-checkpoint-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Connecting Line */
+.jdw-checkpoint-item::after {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  top: 1.8rem;
+  bottom: 0;
+  width: 2px;
+  background: #cbd5e1;
+}
+
+.jdw-checkpoint-item:last-child::after {
+  display: none;
+}
+
+.jdw-checkpoint-num-box {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: #1B4285;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 900;
+  flex-shrink: 0;
+  z-index: 2;
+  box-shadow: 0 0 0 3px #ffffff;
+}
+
+.jdw-checkpoint-num-box.rest {
+  background: #f97316;
+}
+
+.jdw-checkpoint-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.jdw-checkpoint-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.jdw-checkpoint-info h4 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.2rem 0;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.jdw-checkpoint-info h4.highlight-orange {
+  color: #c2410c;
+}
+
+.jdw-checkpoint-info p {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.jdw-checkpoint-time-badge {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.4rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: flex-start;
+  text-align: center;
+}
+
+.jdw-checkpoint-time-badge.est {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #64748b;
+}
+
+.jdw-checkpoint-time-badge.orange {
+  background: #fff7ed;
+  border-color: #fed7aa;
+  color: #c2410c;
+}
+
+.jdw-checkpoint-time-badge.final {
+  background: #1B4285;
+  border-color: #1B4285;
+  color: #ffffff;
+}
+
+/* ── Kolom Kanan: Peta Rute & Fasilitas Jalur ─────────────────── */
+.jdw-right-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Interactive Map Container */
+.jdw-map-box {
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #d9e3f6;
+  position: relative;
+  background: #e2e8f0;
+  height: 210px;
+}
+
+.jdw-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jdw-map-overlay-condition {
+  position: absolute;
+  bottom: 0.65rem;
+  left: 0.65rem;
+  right: 0.65rem;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.65rem;
+  border: 1px solid rgba(0, 40, 105, 0.1);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.jdw-map-traffic-speed {
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.35rem;
+}
+
+/* Fasilitas Standar Jalur Grid */
+.jdw-facilities-box {
+  background: #f8faff;
+  border: 1px solid #e9effd;
+  border-radius: 1rem;
+  padding: 1.15rem;
+}
+
+.jdw-facilities-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.jdw-facilities-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.jdw-facilities-cap-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #1d4ed8;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 0.18rem 0.55rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.jdw-facilities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.jdw-facility-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.65rem;
+  padding: 0.65rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.jdw-facility-icon {
+  font-size: 1.25rem;
+  color: #f97316;
+  flex-shrink: 0;
+}
+
+.jdw-facility-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.jdw-facility-text h5 {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.1rem 0;
+  line-height: 1.25;
+}
+
+.jdw-facility-text p {
+  font-size: 0.62rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* ── Terminal Locations Explorer ────────────────────────────── */
+.jdw-locations-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid var(--jdw-border);
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 40, 105, 0.05);
+  margin-top: 1.75rem;
+}
+
+.jdw-location-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.jdw-location-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid #d9e3f6;
+  background: #f8faff;
+  color: #334155;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.jdw-location-tab-btn:hover {
+  border-color: #1B4285;
+  background: #eff6ff;
+  color: #1B4285;
+}
+
+.jdw-location-tab-btn.active {
+  background: #1B4285;
+  border-color: #1B4285;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(27, 66, 133, 0.25);
+}
+
+.jdw-terminal-card-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .jdw-terminal-card-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.jdw-terminal-info-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.jdw-terminal-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.jdw-terminal-badge {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.35rem;
+}
+
+.jdw-terminal-badge.hours {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
+.jdw-terminal-name {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0;
+}
+
+.jdw-terminal-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.825rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.jdw-terminal-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.jdw-terminal-chip {
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.35rem;
+  border: 1px solid #e2e8f0;
+}
+
+.jdw-terminal-actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.jdw-btn-use-route {
+  padding: 0.65rem 1rem;
+  border-radius: 0.65rem;
+  border: 1px solid #1B4285;
+  background: #ffffff;
+  color: #1B4285;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.jdw-btn-use-route:hover {
+  background: #eff6ff;
+}
+
+.jdw-btn-use-route.primary {
+  background: #1B4285;
+  color: #ffffff;
+}
+
+.jdw-btn-use-route.primary:hover {
+  background: #0f2a55;
+}
+
+.jdw-btn-gmaps {
+  padding: 0.65rem 1rem;
+  border-radius: 0.65rem;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  color: #374151;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.jdw-btn-gmaps:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.jdw-terminal-map-preview {
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  background: #e2e8f0;
+  height: 230px;
+  position: relative;
+}
+
+.jdw-terminal-map-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* --------------------------------------------------------------
+   RESPONSIVE HP KECIL � Jadwal Page (=480px)
+   -------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .jdw-details-card,
+  .jdw-locations-card,
+  .jdw-search-card {
+    padding: 1.15rem 1rem;
+  }
+
+  .jdw-checkpoint-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .jdw-facilities-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .jdw-search-card-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .jdw-submit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .jdw-terminal-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .jdw-btn-use-route,
+  .jdw-btn-gmaps {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .jdw-hero-card {
+    padding: 1.25rem 1rem;
+    border-radius: 1.15rem;
+  }
+
+  .jdw-hero-title {
+    font-size: clamp(1.35rem, 6.4vw, 1.6rem);
+  }
+}
+
+
+/* ==========================================================================
+   TERMINAL DIRECTORY FILTER BAR & INTERACTIVE TOMTOM MAPS DENAH
+   ========================================================================== */
+.jdw-terminal-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.jdw-terminal-search-wrap {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8faff;
+  border: 1.5px solid #d9e3f6;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.jdw-terminal-search-wrap:focus-within {
+  border-color: #1B4285;
+  box-shadow: 0 0 0 3px rgba(27, 66, 133, 0.12);
+}
+
+.jdw-terminal-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+  min-width: 0;
+}
+
+.jdw-terminal-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: #e2e8f0;
+  color: #475569;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.jdw-terminal-province-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #f8faff;
+  border: 1.5px solid #d9e3f6;
+  border-radius: 0.75rem;
+  padding: 0.45rem 0.75rem;
+}
+
+.jdw-terminal-province-select {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1B4285;
+  cursor: pointer;
+}
+
+.jdw-terminal-count-pill {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.jdw-location-tabs-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 0.55rem;
+  padding: 0.15rem 0.1rem 0.75rem;
+  margin-bottom: 1.25rem;
+  scrollbar-width: thin;
+}
+
+.jdw-location-tabs-grid::-webkit-scrollbar {
+  display: block;
+  height: 6px;
+}
+
+.jdw-location-tabs-grid::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.jdw-tab-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.jdw-tab-main {
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.jdw-tab-sub {
+  font-size: 0.65rem;
+  font-weight: 600;
+  opacity: 0.78;
+}
+
+.jdw-terminal-empty {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.jdw-terminal-map-interactive {
+  height: 320px;
+  min-height: 290px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1.5px solid #cbd5e1;
+  position: relative;
+}
+
+.jdw-terminal-map-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jdw-map-ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  background: rgba(255, 255, 255, 0.94);
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+  transition: all 0.15s ease;
+}
+
+.jdw-map-ctrl-btn:hover {
+  border-color: #FA7808;
+  color: #FA7808;
+}
+
+.jdw-map-ctrl-btn.active {
+  background: #FA7808;
+  border-color: #FA7808;
+  color: #ffffff;
+}
+
+.jdw-terminal-map-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 900;
+  background: rgba(15, 23, 42, 0.82);
+  color: #ffffff;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* Pulsing TomTom Terminal Location Pin */
+.jdw-tomtom-pin-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jdw-tomtom-pin-pulse {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(250, 120, 8, 0.35);
+  animation: jdw-pin-pulse 1.8s ease-out infinite;
+}
+
+.jdw-tomtom-pin-core {
+  position: relative;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1B4285 0%, #FA7808 100%);
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(27, 66, 133, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes jdw-pin-pulse {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}

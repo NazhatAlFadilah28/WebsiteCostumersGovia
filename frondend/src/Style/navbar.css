@@ -1,0 +1,734 @@
+/**
+ * ============================================================
+ * BusTix Shared Navbar Stylesheet — Navbar.css
+ * ============================================================
+ * Fully Responsive: Desktop ↔ Tablet ↔ Mobile
+ * Mendukung 2 varian:
+ *   - FULL    → Logo + Menu Navigasi + Tombol CTA
+ *   - MINIMAL → Logo + Tombol CTA saja (untuk halaman Login)
+ * ============================================================
+ */
+
+/* ── Navbar Variables ──────────────────────────────────────── */
+:root {
+  --nav-primary: #1B4285;
+  --nav-primary-hover: #153770;
+  --nav-orange: #FA7808;
+  --nav-orange-hover: #e56b00;
+  --nav-surface-low: #eff4ff;
+  --nav-border: #d9e3f6;
+  --nav-text-dark: #121c2a;
+  --nav-text-sub: #434652;
+  --nav-text-muted: #747783;
+}
+
+/* ── Base Navbar Container ─────────────────────────────────── */
+.nav-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border-bottom: 1px solid var(--nav-border);
+  padding: 0 1.5rem;
+  padding-left: max(1.5rem, env(safe-area-inset-left));
+  padding-right: max(1.5rem, env(safe-area-inset-right));
+  box-shadow:
+    0 1px 3px rgba(27, 66, 133, 0.04),
+    0 4px 12px rgba(27, 66, 133, 0.02);
+  transition: box-shadow 0.25s ease;
+}
+
+.nav-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 3.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* ── Brand Logo ────────────────────────────────────────────── */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+
+.nav-brand:hover {
+  opacity: 0.85;
+}
+
+.nav-brand-logo-img {
+  height: 2.5rem;
+  max-height: 44px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Center Navigation Menu Links (Desktop Only) ──────────── */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.nav-menu-item {
+  position: relative;
+  background: transparent;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--nav-text-sub);
+  cursor: pointer;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.625rem;
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  white-space: nowrap;
+}
+
+.nav-menu-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--nav-orange), #ffa344);
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+.nav-menu-item:hover {
+  color: var(--nav-primary);
+  background-color: var(--nav-surface-low);
+}
+
+.nav-menu-item:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Badge (CS 24/7) */
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--nav-surface-low) 0%, #dde6fa 100%);
+  color: var(--nav-primary);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(0, 40, 105, 0.08);
+  animation: nav-badge-pulse 3s ease-in-out infinite;
+}
+
+@keyframes nav-badge-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ── Right CTA Action Buttons (Desktop Only) ──────────────── */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.nav-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.625rem 1.375rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--nav-orange) 0%, #ff8c1a 100%);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow:
+    0 4px 12px rgba(251, 120, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-cta-btn:hover {
+  background: linear-gradient(135deg, var(--nav-orange-hover) 0%, #e67600 100%);
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 18px rgba(251, 120, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.nav-cta-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ── Logged In User Pill & Luxury Logout Button ────────────── */
+.nav-user-logged {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.nav-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.25rem 0.875rem 0.25rem 0.3125rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5fd 100%);
+  border: 1.5px solid #d4e2f8;
+  box-shadow:
+    0 2px 8px rgba(27, 66, 133, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  cursor: default;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-user-profile:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
+  border-color: #b3cef6;
+  box-shadow: 0 4px 14px rgba(27, 66, 133, 0.1);
+  transform: translateY(-1px);
+}
+
+.nav-user-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--nav-primary) 0%, #295ab0 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(27, 66, 133, 0.25);
+  flex-shrink: 0;
+}
+
+/* Status indicator dot */
+.nav-user-avatar::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10b981;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 0 4px rgba(16, 185, 129, 0.6);
+}
+
+.nav-user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.nav-user-name {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--nav-text-dark);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.nav-user-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  color: var(--nav-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Rich Luxury Logout Button ────────────────────────────── */
+.nav-logout-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.9375rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(220, 38, 38, 0.14) 100%);
+  border: 1.5px solid rgba(239, 68, 68, 0.28);
+  color: #dc2626;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow:
+    0 2px 8px rgba(220, 38, 38, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.nav-logout-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+.nav-logout-btn span {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.25s ease;
+}
+
+.nav-logout-btn .material-symbols-outlined {
+  font-size: 17px !important;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-logout-btn:hover {
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(220, 38, 38, 0.38),
+    0 0 0 3px rgba(239, 68, 68, 0.16);
+}
+
+.nav-logout-btn:hover::before {
+  opacity: 1;
+}
+
+.nav-logout-btn:hover .material-symbols-outlined {
+  transform: translateX(2px) rotate(-6deg);
+}
+
+.nav-logout-btn:active {
+  transform: translateY(0) scale(0.96);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+}
+
+/* ── Tombol Notifikasi (FCM) ──────────────────────────────────── */
+.nav-fcm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.05);
+  border: 1.5px solid rgba(15, 23, 42, 0.14);
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-fcm-btn:hover {
+  background: rgba(251, 120, 0, 0.1);
+  border-color: rgba(251, 120, 0, 0.35);
+  color: var(--nav-orange, #fb7800);
+}
+
+.nav-fcm-btn.on {
+  background: rgba(251, 120, 0, 0.14);
+  border-color: rgba(251, 120, 0, 0.45);
+  color: var(--nav-orange, #fb7800);
+}
+
+/* ── Mobile User Card & Mobile Logout ─────────────────────── */
+.nav-mobile-user-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  background-color: var(--nav-surface-low);
+  border: 1px solid var(--nav-border);
+  margin-bottom: 0.5rem;
+}
+
+.nav-mobile-user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--nav-primary) 0%, #2a5eb0 100%);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.nav-mobile-user-details {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: left;
+}
+
+.nav-mobile-user-name {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--nav-text-dark);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-mobile-user-email {
+  font-size: 0.75rem;
+  color: var(--nav-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-mobile-logout-btn {
+  width: 100%;
+  margin-top: 0.375rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(220, 38, 38, 0.16) 100%);
+  color: #dc2626;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  border: 1.5px solid rgba(239, 68, 68, 0.3);
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.12);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-mobile-logout-btn:hover,
+.nav-mobile-logout-btn:active {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.38);
+  transform: translateY(-1px);
+}
+
+/* ── Mobile Hamburger Toggle (Hidden on Desktop) ──────────── */
+.nav-mobile-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.625rem;
+  background: transparent;
+  border: 1.5px solid var(--nav-border);
+  color: var(--nav-text-dark);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.nav-mobile-toggle:hover {
+  background-color: var(--nav-surface-low);
+  border-color: var(--nav-primary);
+  color: var(--nav-primary);
+}
+
+/* ── Mobile Backdrop Overlay ──────────────────────────────── */
+.nav-mobile-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  animation: nav-fade-in 0.2s ease;
+}
+
+@keyframes nav-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Mobile Dropdown Menu ─────────────────────────────────── */
+.nav-mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: 0 16px 40px rgba(0, 40, 105, 0.12);
+  padding: 0.75rem 1rem 1rem;
+  flex-direction: column;
+  gap: 0.25rem;
+  z-index: 3;
+  max-height: calc(100vh - 3.75rem);
+  max-height: calc(100dvh - 3.75rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-mobile-menu.open {
+  display: flex;
+  animation: nav-slide-down 0.25s ease-out;
+}
+
+@keyframes nav-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-mobile-menu-item {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--nav-text-sub);
+  cursor: pointer;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.nav-mobile-menu-item:hover,
+.nav-mobile-menu-item:active {
+  color: var(--nav-primary);
+  background-color: var(--nav-surface-low);
+}
+
+.nav-mobile-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--nav-border);
+  margin: 0.375rem 0;
+}
+
+.nav-mobile-cta {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--nav-orange) 0%, #ff8c1a 100%);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(251, 120, 0, 0.25);
+  transition: all 0.15s ease;
+}
+
+.nav-mobile-cta:hover {
+  background: linear-gradient(135deg, var(--nav-orange-hover) 0%, #e67600 100%);
+}
+
+/* ================================================================
+   RESPONSIVE BREAKPOINTS
+   ================================================================ */
+
+/* ── Mobile: ≤ 768px ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-header {
+    padding: 0 1rem;
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    /* Solid white agar bar tidak terlihat abu-abu saat menu mobile terbuka */
+    background-color: #ffffff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: 0 2px 10px rgba(27, 66, 133, 0.06);
+  }
+
+  .nav-inner {
+    height: 3.5rem;
+    gap: 0.75rem;
+  }
+
+  /* Hide desktop elements */
+  .nav-menu {
+    display: none !important;
+  }
+
+  .nav-actions {
+    display: none !important;
+  }
+
+  /* Show mobile hamburger */
+  .nav-mobile-toggle {
+    display: flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.75rem;
+  }
+
+  /* Show backdrop when menu is open */
+  .nav-mobile-backdrop {
+    display: block;
+    /* Mulai di bawah navbar agar bar tetap putih bersih (tidak ikut teredup) */
+    top: 3.5rem;
+  }
+
+  /* Logo tetap besar & jelas di HP (jangan dikecilkan) */
+  .nav-brand-logo-img {
+    height: 2.5rem;
+    max-height: 44px;
+  }
+
+  .nav-mobile-menu {
+    max-height: calc(100dvh - 3.5rem);
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ── Small Mobile: ≤ 480px ────────────────────────────────── */
+@media (max-width: 480px) {
+  .nav-header {
+    padding: 0 0.875rem;
+    padding-left: max(0.875rem, env(safe-area-inset-left));
+    padding-right: max(0.875rem, env(safe-area-inset-right));
+  }
+
+  .nav-inner {
+    height: 3.5rem;
+    gap: 0.5rem;
+  }
+
+  .nav-brand-logo-img {
+    height: 2.4rem;
+    max-height: 40px;
+  }
+
+  .nav-mobile-toggle {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .nav-mobile-menu {
+    padding: 0.5rem 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
+  }
+
+  .nav-mobile-menu-item {
+    font-size: 0.875rem;
+    padding: 0.75rem 0.875rem;
+  }
+
+  .nav-mobile-cta {
+    font-size: 0.875rem;
+    padding: 0.75rem;
+  }
+}
+
+/* ── Extra Small Mobile: ≤ 360px ──────────────────────────── */
+@media (max-width: 360px) {
+  .nav-header {
+    padding: 0 0.75rem;
+  }
+
+  .nav-brand-logo-img {
+    height: 2.25rem;
+    max-height: 36px;
+  }
+
+  .nav-mobile-toggle {
+    width: 2.375rem;
+    height: 2.375rem;
+  }
+
+  .nav-mobile-menu-item {
+    font-size: 0.8125rem;
+    gap: 0.625rem;
+  }
+}
+
+/* ── Tablet: 769px - 1023px ───────────────────────────────── */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .nav-menu-item {
+    font-size: 0.75rem;
+    padding: 0.4375rem 0.625rem;
+    gap: 0.25rem;
+  }
+
+  .nav-menu-item .material-symbols-outlined {
+    font-size: 16px !important;
+  }
+
+  .nav-cta-btn {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* ── Desktop Wide: ≥ 1024px ───────────────────────────────── */
+@media (min-width: 1024px) {
+  .nav-menu {
+    gap: 0.5rem;
+  }
+
+  .nav-menu-item {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* ── Spin Animation ───────────────────────────────────────── */
+@keyframes nav-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

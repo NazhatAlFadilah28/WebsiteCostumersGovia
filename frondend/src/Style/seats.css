@@ -1,0 +1,1508 @@
+/**
+ * ============================================================
+ * BusTix Seat & Passenger Configuration Stylesheet — seats.css
+ * ============================================================
+ * Desain CSS khusus halaman Konfigurasi Kursi & Identitas Penumpang
+ * Tepat dan presisi sesuai rancangan visual UI / Stitch Design System
+ * ============================================================
+ */
+
+@import url('./animations.css');
+
+:root {
+  --seat-primary: #1B4285;
+  --seat-primary-hover: #153770;
+  --seat-primary-light: #eff4ff;
+  --seat-accent: #f97316;
+  --seat-accent-hover: #ea580c;
+  --seat-bg: #f1f5f9;
+  --seat-card-bg: #ffffff;
+  --seat-border: #e2e8f0;
+  --seat-border-focus: #1B4285;
+  --seat-text-main: #0f172a;
+  --seat-text-muted: #64748b;
+  --seat-text-light: #94a3b8;
+  --seat-blue-available: #dbeafe;
+  --seat-blue-text: #2563eb;
+  --seat-gray-occupied: #cbd5e1;
+  --seat-gray-text: #64748b;
+  --seat-green: #10b981;
+}
+
+/* ── Container Utama Halaman ─────────────────────────────────── */
+.seat-page-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--seat-bg);
+  color: var(--seat-text-main);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.45s ease-out both;
+}
+
+.seat-main-content {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem 1rem;
+  box-sizing: border-box;
+}
+
+/* ── Top Breadcrumb & Step Bar Section ───────────────────────── */
+.seat-header-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.seat-breadcrumb-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.seat-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.seat-breadcrumbs span.active {
+  color: #1B4285;
+  font-weight: 700;
+}
+
+.seat-breadcrumbs .separator {
+  color: #94a3b8;
+  font-size: 0.7rem;
+}
+
+.seat-page-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1B4285;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* Step indicator pill horizontal */
+.seat-stepper-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.seat-step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.seat-step-item.completed {
+  color: #16a34a;
+}
+
+.seat-step-item.active {
+  color: #f97316;
+  font-weight: 700;
+}
+
+.seat-step-num {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.seat-step-item.completed .seat-step-num {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.seat-step-item.active .seat-step-num {
+  background: #f97316;
+  color: #ffffff;
+}
+
+.seat-step-divider {
+  width: 14px;
+  height: 1.5px;
+  background: #e2e8f0;
+}
+
+/* ── Main Layout Grid (2 Columns: Left Bus Map & Right Details) ─ */
+.seat-grid-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .seat-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Left Column Cards ───────────────────────────────────────── */
+.seat-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.seat-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 40, 105, 0.05);
+}
+
+.seat-card-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.seat-card-header-row > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.seat-badge-sub {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.seat-card-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.seat-deck-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1B4285;
+  background: #eff4ff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  border: 1px solid #d9e3f6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.seat-deck-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f97316;
+}
+
+/* ── Legend Row ──────────────────────────────────────────────── */
+.seat-legend-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.25rem;
+  background: #f8faff;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e9effd;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.seat-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.seat-legend-box {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+}
+
+.seat-legend-box.available {
+  background-color: #dbeafe;
+  border: 1px solid #bfdbfe;
+}
+
+.seat-legend-box.selected {
+  background-color: #f97316;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.seat-legend-box.occupied {
+  background-color: #cbd5e1;
+  border: 1px solid #94a3b8;
+}
+
+/* ── Bus Interior Cabin Matrix Box ───────────────────────────── */
+.seat-bus-cabin {
+  background: #f0f4fc;
+  border-radius: 1.25rem;
+  border: 1.5px solid #dce5f5;
+  padding: 1.25rem;
+  position: relative;
+}
+
+/* Cabin Front / Driver Header */
+.seat-cabin-front-banner {
+  background: #e1eaf9;
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #d0deff;
+}
+
+.seat-driver-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.seat-steering-icon {
+  width: 2rem;
+  height: 2rem;
+  background: #1B4285;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.seat-driver-text {
+  min-width: 0;
+}
+
+.seat-driver-text h4 {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.seat-driver-text p {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.seat-door-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #ffffff;
+  border: 1px solid #f97316;
+  color: #f97316;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Column Header Labels (Jendela A, Lorong B, GANG, Lorong C, Jendela D) */
+.seat-cols-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.6fr 1fr 1fr;
+  gap: 0.5rem;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #4b6b94;
+  margin-bottom: 0.65rem;
+  padding: 0 0.25rem;
+}
+
+/* Cabin Rows Grid */
+.seat-matrix-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.seat-row-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.6fr 1fr 1fr;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.seat-gang-label {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual Seat Button Styles */
+.seat-btn {
+  height: 2.75rem;
+  width: 100%;
+  border-radius: 0.65rem;
+  border: 1.5px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Available */
+.seat-btn.status-available {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.seat-btn.status-available:hover {
+  background-color: #bfdbfe;
+  border-color: #93c5fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(30, 64, 175, 0.15);
+}
+
+/* Selected */
+.seat-btn.status-selected {
+  background-color: #f97316;
+  color: #ffffff;
+  border-color: #d96300;
+  box-shadow: 0 4px 10px rgba(251, 120, 0, 0.35);
+  transform: scale(1.02);
+}
+
+.seat-btn.status-selected::after {
+  content: '✓';
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+/* Occupied */
+.seat-btn.status-occupied {
+  background-color: #cbd5e1;
+  color: #64748b;
+  border-color: #94a3b8;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+/* Cabin Rear Footer (Toilet & Emergency Door) */
+.seat-cabin-rear-banner {
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  background: #e1eaf9;
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid #d0deff;
+}
+
+.seat-toilet-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #cbd5e1;
+}
+
+.seat-toilet-info h5 {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+}
+
+.seat-toilet-info p {
+  font-size: 0.58rem;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0;
+}
+
+.seat-emergency-door-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #f97316;
+  white-space: nowrap;
+}
+
+/* ── Selected Seat Highlight Card ────────────────────────────── */
+.seat-selected-highlight-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  border: 1.5px solid #dbeafe;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 40, 105, 0.04);
+}
+
+.seat-highlight-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.seat-highlight-badge {
+  background: #f97316;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 900;
+  padding: 0.4rem 0.65rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 2px 6px rgba(251, 120, 0, 0.3);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.seat-highlight-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.seat-highlight-info h4 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0 0 0.15rem 0;
+  line-height: 1.3;
+}
+
+.seat-highlight-info p {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.seat-highlight-status {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #f97316;
+  background: #fff7ed;
+  border: 1px solid #ffedd5;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Fasilitas Standar Armada Eksekutif ───────────────────────── */
+.seat-amenities-section {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid #e2e8f0;
+  padding: 1.25rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 40, 105, 0.05);
+}
+
+.seat-amenities-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.seat-amenities-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+}
+
+.seat-amenities-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.seat-amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  .seat-amenities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.seat-amenity-card {
+  background: #f8faff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.85rem;
+}
+
+.seat-amenity-icon-box {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  background: #1B4285;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.seat-amenity-card h5 {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0 0 0.25rem 0;
+}
+
+.seat-amenity-card p {
+  font-size: 0.68rem;
+  color: #64748b;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Bus Interior Image Banner */
+.seat-bus-banner-container {
+  border-radius: 0.85rem;
+  overflow: hidden;
+  position: relative;
+  height: 180px;
+  background: linear-gradient(135deg, #1B4285 0%, #0f2a55 100%);
+}
+
+.seat-bus-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.95;
+  display: block;
+}
+
+.seat-bus-banner-placeholder {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding-bottom: 1.75rem;
+}
+
+.seat-bus-banner-overlay {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
+  background: rgba(0, 40, 105, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ── Right Column Cards ──────────────────────────────────────── */
+.seat-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Trip Route Summary Card */
+.seat-trip-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid #e2e8f0;
+  padding: 1.25rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 40, 105, 0.05);
+}
+
+.seat-trip-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.seat-trip-header > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.seat-trip-category {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.seat-bus-operator-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.seat-bus-fleet-code {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin: 0.2rem 0 0 0;
+  line-height: 1.35;
+}
+
+.seat-class-badge {
+  background: #eff4ff;
+  color: #1B4285;
+  border: 1px solid #d9e3f6;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.4rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.seat-date-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1B4285;
+  background: #f8faff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.35;
+}
+
+.seat-timeline-route {
+  position: relative;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.seat-timeline-route::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: #cbd5e1;
+}
+
+.seat-timeline-stop {
+  position: relative;
+}
+
+.seat-timeline-dot {
+  position: absolute;
+  left: -1.25rem;
+  top: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1B4285;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px #1B4285;
+}
+
+.seat-timeline-dot.dest {
+  background: #f97316;
+  box-shadow: 0 0 0 1px #f97316;
+}
+
+.seat-timeline-stop h6 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* Passenger Identity Form Card */
+.seat-passenger-form-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid #e2e8f0;
+  padding: 1.25rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 40, 105, 0.05);
+}
+
+.seat-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.seat-form-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+}
+
+.seat-form-seat-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #f97316;
+}
+
+.seat-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.seat-checkbox-row label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.seat-form-group {
+  margin-bottom: 0.85rem;
+}
+
+.seat-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.seat-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.seat-label-required {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #f97316;
+}
+
+.seat-label-verified {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #16a34a;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.seat-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.seat-input-icon {
+  position: absolute;
+  left: 0.75rem;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.seat-input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 2.25rem 0 2.35rem;
+  border-radius: 0.65rem;
+  border: 1px solid #cbd5e1;
+  background: #f8faff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #0f172a;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.seat-input:focus {
+  outline: none;
+  border-color: #1B4285;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 40, 105, 0.08);
+}
+
+.seat-input-right-check {
+  position: absolute;
+  right: 0.75rem;
+  color: #f97316;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.seat-input-hint {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+/* ── Transaction Fare Summary Card ───────────────────────────── */
+.seat-fare-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid #e2e8f0;
+  padding: 1.25rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 40, 105, 0.05);
+}
+
+.seat-fare-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0 0 1rem 0;
+}
+
+.seat-fare-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.seat-fare-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: #475569;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.seat-fare-line .price {
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.seat-fare-line .price.free {
+  color: #f97316;
+  font-weight: 800;
+}
+
+.seat-fare-line .price.struck {
+  text-decoration: line-through;
+  color: #94a3b8;
+  margin-left: 0.35rem;
+}
+
+.seat-free-badge {
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.3rem;
+  margin-left: 0.35rem;
+}
+
+/* Total Payment Box */
+.seat-fare-total-box {
+  background: #f8faff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.seat-total-left span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.seat-total-price {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #1B4285;
+  letter-spacing: -0.02em;
+}
+
+.seat-total-right {
+  text-align: right;
+}
+
+.seat-total-right span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #f97316;
+}
+
+.seat-total-right small {
+  display: block;
+  font-size: 0.62rem;
+  color: #94a3b8;
+}
+
+/* Main Orange Submit Button */
+.seat-submit-btn {
+  width: 100%;
+  height: 3rem;
+  background: #f97316;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(251, 120, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.seat-submit-btn:hover {
+  background: #e66e00;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(251, 120, 0, 0.4);
+}
+
+.seat-submit-btn:active {
+  transform: translateY(1px);
+}
+
+.seat-guarantee-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+/* ── Fitur Titik Penjemputan Fleksibel (Flexible Pickup Point) ── */
+.seat-pickup-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1.5px solid #d9e3f6;
+  padding: 1.25rem;
+  box-shadow: 0 4px 20px -2px rgba(0, 40, 105, 0.05);
+}
+
+.seat-pickup-feature-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #c2410c;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.seat-pickup-intro {
+  font-size: 0.72rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin: 0 0 0.85rem 0;
+}
+
+.seat-boarding-mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+@media (max-width: 540px) {
+  .seat-boarding-mode-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.seat-boarding-option-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.8rem 0.85rem;
+  border-radius: 0.85rem;
+  border: 1.5px solid #e2e8f0;
+  background: #f8faff;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  min-width: 0;
+}
+
+.seat-boarding-option-btn:hover {
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
+.seat-boarding-option-btn.active {
+  border-color: #1B4285;
+  background: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(27, 66, 133, 0.1);
+}
+
+.seat-boarding-option-btn.active.orange {
+  border-color: #f97316;
+  background: #fff7ed;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
+}
+
+.seat-boarding-opt-icon {
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 0.6rem;
+  background: #1B4285;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.seat-boarding-opt-icon.orange {
+  background: #f97316;
+}
+
+.seat-boarding-opt-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.seat-boarding-opt-text h5 {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.2rem 0;
+  line-height: 1.3;
+}
+
+.seat-boarding-opt-text p {
+  font-size: 0.64rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.seat-pickup-panel {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.seat-pickup-gps-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.seat-btn-gps {
+  flex: 1;
+  min-width: 180px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.65rem;
+  border: 1px solid #1B4285;
+  background: #1B4285;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.seat-btn-gps:hover {
+  background: #0f2a55;
+}
+
+.seat-btn-gmaps-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.65rem;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.seat-btn-gmaps-link:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.seat-pickup-presets {
+  display: flex;
+  flex-direction: column;
+}
+
+.seat-pickup-preset-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.seat-pickup-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  font-family: inherit;
+  font-size: 0.66rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.seat-pickup-chip:hover {
+  border-color: #f97316;
+  color: #c2410c;
+  background: #fff7ed;
+}
+
+.seat-pickup-chip.active {
+  background: #f97316;
+  border-color: #f97316;
+  color: #ffffff;
+}
+
+.seat-pickup-map-wrapper {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.seat-pickup-map-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.45rem 0.75rem;
+  background: #eff6ff;
+  border-bottom: 1px solid #dbeafe;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.seat-pickup-coord-pill {
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  padding: 0.1rem 0.45rem;
+  border-radius: 0.35rem;
+  font-family: monospace;
+  font-size: 0.64rem;
+  color: #1d4ed8;
+}
+
+.seat-pickup-Interactive-map {
+  width: 100%;
+  height: 195px;
+  background: #e2e8f0;
+}
+
+.seat-pickup-map-legend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.seat-pickup-validation-box {
+  border-radius: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  border: 1.5px solid #86efac;
+  background: #f0fdf4;
+  color: #14532d;
+}
+
+.seat-pickup-validation-box.warning {
+  border-color: #fcd34d;
+  background: #fffbeb;
+  color: #78350f;
+}
+
+.seat-pickup-validation-box.invalid {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  color: #7f1d1d;
+}
+
+.seat-pickup-val-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.74rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.seat-pickup-val-desc {
+  font-size: 0.66rem;
+  line-height: 1.4;
+  margin: 0 0 0.65rem 0;
+  opacity: 0.92;
+}
+
+.seat-pickup-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+}
+
+.seat-pickup-metric {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.55rem;
+  padding: 0.4rem 0.55rem;
+  text-align: center;
+}
+
+.seat-pickup-metric .lbl {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 0.1rem;
+}
+
+.seat-pickup-metric strong {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.seat-pickup-nearest-suggest {
+  margin-top: 0.65rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed rgba(127, 29, 29, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.seat-pickup-nearest-suggest small {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.seat-pickup-nearest-suggest h6 {
+  margin: 0.1rem 0 0 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.seat-btn-use-nearest {
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------
+   RESPONSIVE HP KECIL � Seats Page (=480px)
+   -------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .seat-stepper-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem 0.5rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: 1rem;
+  }
+
+  .seat-step-divider {
+    display: none;
+  }
+
+  .seat-step-item {
+    font-size: 0.65rem;
+  }
+
+  .seat-card {
+    padding: 1rem;
+  }
+
+  .seat-cols-header,
+  .seat-row-item {
+    gap: 0.3rem;
+  }
+
+  .seat-cols-header {
+    font-size: 0.58rem;
+    padding: 0;
+  }
+
+  .seat-gang-label {
+    font-size: 0.55rem;
+  }
+
+  .seat-node {
+    width: 100%;
+    max-width: 40px;
+  }
+}

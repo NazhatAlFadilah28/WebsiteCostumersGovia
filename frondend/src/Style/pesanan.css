@@ -1,0 +1,1138 @@
+/**
+ * ============================================================
+ * BusTix Customer Orders / Pesanan Stylesheet — pesanan.css
+ * ============================================================
+ * Desain CSS presisi untuk Halaman Pesanan Tiket Bus Saya
+ * ============================================================
+ */
+
+@import url('./animations.css');
+
+:root {
+  --ord-primary: #1B4285;
+  --ord-primary-hover: #153770;
+  --ord-primary-light: #eff4ff;
+  --ord-orange: #f97316;
+  --ord-orange-hover: #ea580c;
+  --ord-surface: #f1f5f9;
+  --ord-card-bg: #ffffff;
+  --ord-border: #e2e8f0;
+  --ord-border-blue: #d9e3f6;
+  --ord-text-main: #0f172a;
+  --ord-text-sub: #475569;
+  --ord-text-muted: #64748b;
+  --ord-text-light: #94a3b8;
+  --ord-green: #16a34a;
+  --ord-green-bg: #dcfce7;
+  --ord-blue-light: #dbeafe;
+}
+
+/* ── Container Utama Halaman ─────────────────────────────────── */
+.ord-page-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--ord-surface);
+  color: var(--ord-text-main);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.45s ease-out both;
+}
+
+.ord-main-content {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3.5rem 1rem;
+  box-sizing: border-box;
+}
+
+/* ── Breadcrumb & Page Header ────────────────────────────────── */
+.ord-header-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ord-breadcrumb-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ord-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.ord-breadcrumbs span.active {
+  color: #1B4285;
+  font-weight: 700;
+}
+
+.ord-breadcrumbs .separator {
+  color: #94a3b8;
+  font-size: 0.7rem;
+}
+
+.ord-badge-mgmt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.2rem;
+}
+
+.ord-page-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #1B4285;
+  letter-spacing: -0.02em;
+  margin: 0.2rem 0;
+}
+
+.ord-page-desc {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.ord-gps-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #ffffff;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid var(--ord-border);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1e293b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.ord-gps-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f97316;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 120, 0, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(251, 120, 0, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 120, 0, 0); }
+}
+
+/* ── Search & Filter Bar ─────────────────────────────────────── */
+.ord-search-bar-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .ord-search-bar-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ord-search-input-box {
+  background: #ffffff;
+  border: 1px solid var(--ord-border);
+  border-radius: 0.75rem;
+  padding: 0 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.ord-search-input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  height: 2.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ord-text-main);
+  outline: none;
+  font-family: inherit;
+}
+
+.ord-select-schedule {
+  background: #ffffff;
+  border: 1px solid var(--ord-border);
+  border-radius: 0.75rem;
+  padding: 0 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.ord-select-schedule select {
+  border: none;
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1B4285;
+  outline: none;
+  cursor: pointer;
+}
+
+.ord-refresh-btn {
+  background: #ffffff;
+  border: 1px solid var(--ord-border);
+  border-radius: 0.75rem;
+  padding: 0 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1B4285;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.ord-refresh-btn:hover {
+  background: #eff4ff;
+  border-color: #bfdbfe;
+}
+
+/* ── Filter Tabs Kategori Pesanan ────────────────────────────── */
+.ord-status-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.ord-status-tab-btn {
+  border: 1px solid var(--ord-border);
+  background: #ffffff;
+  padding: 0.45rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease;
+}
+
+.ord-status-tab-btn.active {
+  background: #1B4285;
+  color: #ffffff;
+  border-color: #1B4285;
+  box-shadow: 0 2px 6px rgba(0, 40, 105, 0.2);
+}
+
+.ord-tab-count-badge {
+  background: rgba(0, 0, 0, 0.08);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+}
+
+.ord-status-tab-btn.active .ord-tab-count-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.ord-tab-count-badge.orange {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.ord-tab-count-badge.green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* ── Main Layout: 2 Columns (Orders List & User Profile Card) ─── */
+.ord-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 310px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .ord-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Kolom Kiri: Daftar Kartu Pesanan ────────────────────────── */
+.ord-cards-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ord-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid var(--ord-border);
+  box-shadow: 0 4px 18px -2px rgba(0, 40, 105, 0.04);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.ord-card:hover {
+  border-color: #bfdbfe;
+  box-shadow: 0 8px 24px -2px rgba(0, 40, 105, 0.08);
+}
+
+/* Card Header Status Row */
+.ord-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.75rem;
+}
+
+.ord-status-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.ord-pill-status {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ord-pill-status.live {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.ord-pill-status.class-tag {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.ord-pill-status.confirmed {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.ord-pill-status.waiting {
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+}
+
+.ord-booking-code-box {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.ord-booking-code-box span.code {
+  color: #1B4285;
+  font-weight: 800;
+  font-family: monospace;
+}
+
+/* Operator & Total Amount Block */
+.ord-operator-summary-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ord-operator-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ord-operator-avatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.65rem;
+  background: #1B4285;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.ord-operator-avatar.sleeper {
+  background: #7c2d12;
+}
+
+.ord-operator-avatar.sinar {
+  background: #0284c7;
+}
+
+.ord-operator-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+}
+
+.ord-operator-fleet {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin: 0.15rem 0 0 0;
+}
+
+.ord-price-summary-box {
+  text-align: right;
+}
+
+.ord-price-label {
+  font-size: 0.62rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.ord-price-value {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #1B4285;
+  letter-spacing: -0.02em;
+}
+
+.ord-price-value.orange {
+  color: #f97316;
+}
+
+.ord-payment-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.2rem;
+}
+
+/* Timeline Route Track Box */
+.ord-route-track-box {
+  background: #f8faff;
+  border: 1px solid #e9effd;
+  border-radius: 0.85rem;
+  padding: 0.85rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .ord-route-track-box {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+.ord-station-left, .ord-station-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.ord-station-right {
+  text-align: right;
+}
+
+.ord-date-tag-mini {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #f97316;
+}
+
+.ord-city-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.1rem 0;
+}
+
+.ord-terminal-desc {
+  font-size: 0.65rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.ord-track-mid-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ord-track-duration-pill {
+  background: #ffffff;
+  border: 1px solid #d9e3f6;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #1B4285;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.ord-track-highway-note {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #1B4285;
+}
+
+/* Live Telemetry GPS Box */
+.ord-telemetry-box {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.65rem;
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ord-telemetry-left {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.ord-speed-tag {
+  background: #f97316;
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+.ord-telemetry-right {
+  font-size: 0.68rem;
+  color: #1e40af;
+  font-weight: 700;
+}
+
+/* Card Bottom Actions Row */
+.ord-card-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.ord-passenger-seat-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.ord-card-action-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ord-btn-secondary {
+  background: #eff4ff;
+  border: 1px solid #d9e3f6;
+  color: #1B4285;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.ord-btn-secondary:hover {
+  background: #dee9fc;
+}
+
+.ord-btn-ticket {
+  background: #f97316;
+  color: #ffffff;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 0 2px 6px rgba(251, 120, 0, 0.25);
+  transition: all 0.15s ease;
+}
+
+.ord-btn-ticket:hover {
+  background: #e66e00;
+}
+
+.ord-btn-navy-ticket {
+  background: #1B4285;
+  color: #ffffff;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ord-btn-pay-now {
+  background: #f97316;
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 10px rgba(251, 120, 0, 0.3);
+}
+
+/* ── Kolom Kanan: Profil User & Panduan Boarding ─────────────── */
+.ord-sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ord-user-profile-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid var(--ord-border);
+  padding: 1.25rem;
+  box-shadow: 0 4px 18px -2px rgba(0, 40, 105, 0.04);
+}
+
+.ord-user-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.ord-user-avatar-badge {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.65rem;
+  background: #1B4285;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.ord-user-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0;
+}
+
+.ord-user-level {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #f97316;
+  margin: 0;
+}
+
+/* BusPoints Box */
+.ord-points-box {
+  background: #f8faff;
+  border: 1px solid #e9effd;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.ord-points-left span {
+  display: block;
+  font-size: 0.62rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.ord-points-value {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #1B4285;
+}
+
+.ord-redeem-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.3rem 0.65rem;
+  border-radius: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #1B4285;
+  cursor: pointer;
+}
+
+/* Stat 2 Kolom Mini */
+.ord-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.ord-stat-box {
+  background: #eff4ff;
+  border-radius: 0.65rem;
+  padding: 0.65rem;
+  text-align: center;
+}
+
+.ord-stat-value {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #1B4285;
+}
+
+.ord-stat-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+/* Cara Boarding Bus Dark Blue Box */
+.ord-boarding-card {
+  background: #1B4285;
+  color: #ffffff;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  box-shadow: 0 4px 18px -2px rgba(0, 40, 105, 0.2);
+}
+
+.ord-boarding-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin: 0 0 0.65rem 0;
+}
+
+.ord-boarding-desc {
+  font-size: 0.68rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+  margin-bottom: 0.85rem;
+}
+
+.ord-boarding-tip {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fed7aa;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ── Footer Lengkap Pesanan ─────────────────────────────────── */
+.ord-footer {
+  background: #ffffff;
+  border-top: 1px solid var(--ord-border);
+  margin-top: auto;
+  padding: 2.5rem 1rem 1.5rem 1rem;
+}
+
+.ord-footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .ord-footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ord-footer-logo-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+}
+
+.ord-footer-desc {
+  font-size: 0.72rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+}
+
+.ord-footer-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ord-footer-pill {
+  background: #f8faff;
+  border: 1px solid #d9e3f6;
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #1B4285;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ord-footer-col h5 {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0 0 0.85rem 0;
+}
+
+.ord-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.ord-footer-links li a {
+  text-decoration: none;
+  font-size: 0.72rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.ord-footer-links li a:hover {
+  color: #1B4285;
+}
+
+.ord-footer-bottom {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------
+   RESPONSIVE HP KECIL � Pesanan Page (=480px)
+   -------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .ord-card {
+    padding: 1rem;
+  }
+
+  .ord-operator-summary-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ord-operator-name {
+    font-size: 0.98rem;
+  }
+
+  .ord-price-summary-box {
+    text-align: left;
+  }
+
+  .ord-price-value {
+    font-size: 1.15rem;
+  }
+
+  .ord-page-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* ── Form Refund (modal) ──────────────────────────────────────── */
+.rfd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.62);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.rfd-modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 1rem;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
+}
+
+.rfd-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.15rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.rfd-head > .material-symbols-outlined {
+  font-size: 26px;
+  color: #1B4285;
+  background: #eff4ff;
+  border-radius: 0.5rem;
+  padding: 0.35rem;
+}
+
+.rfd-head h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.rfd-head p {
+  margin: 0.2rem 0 0;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.rfd-head strong {
+  color: #1B4285;
+  font-family: monospace;
+}
+
+.rfd-close {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  padding: 0.15rem;
+  border-radius: 0.35rem;
+  display: flex;
+}
+
+.rfd-close:hover { background: #f1f5f9; color: #0f172a; }
+.rfd-close:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.rfd-body {
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.rfd-summary {
+  background: #f8faff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rfd-sum-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.rfd-sum-row strong {
+  color: #0f172a;
+  font-weight: 700;
+  text-align: right;
+}
+
+.rfd-sum-row.total {
+  border-top: 1px dashed #cbd5e1;
+  padding-top: 0.6rem;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+}
+
+.rfd-sum-row.total strong { color: #1B4285; font-size: 0.95rem; font-weight: 900; }
+
+.rfd-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 0.35rem;
+}
+
+.rfd-label em { color: #dc2626; font-style: normal; }
+
+.rfd-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.55rem;
+  padding: 0.6rem 0.7rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  color: #0f172a;
+  background: #fff;
+  margin-bottom: 0.9rem;
+}
+
+.rfd-input:focus {
+  outline: none;
+  border-color: #1B4285;
+  box-shadow: 0 0 0 3px rgba(27, 66, 133, 0.12);
+}
+
+.rfd-input:disabled { background: #f8fafc; color: #94a3b8; }
+
+.rfd-textarea { resize: vertical; min-height: 72px; }
+
+.rfd-policy {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  border-radius: 0.6rem;
+  padding: 0.7rem 0.8rem;
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+.rfd-policy .material-symbols-outlined { font-size: 17px; flex-shrink: 0; }
+
+.rfd-policy.blocked {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+.rfd-foot {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.rfd-btn-cancel {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 0.6rem 1.1rem;
+  border-radius: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rfd-btn-cancel:hover { background: #f8fafc; }
+.rfd-btn-cancel:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.rfd-btn-submit {
+  background: #dc2626;
+  border: none;
+  color: #fff;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.28);
+}
+
+.rfd-btn-submit:hover:not(:disabled) { background: #b91c1c; }
+.rfd-btn-submit:disabled { opacity: 0.55; cursor: not-allowed; box-shadow: none; }

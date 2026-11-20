@@ -1,0 +1,322 @@
+[
+    {
+        "id": 1,
+        "nama_po": "Sinar Jaya",
+        "wilayah": "Jawa Barat",
+        "jenis_layanan": "AKAP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 2,
+        "nama_po": "Primajasa",
+        "wilayah": "Jawa Barat",
+        "jenis_layanan": "AKAP/AKDP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 3,
+        "nama_po": "Agra Mas",
+        "wilayah": "Jabodetabek",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive, Double Decker",
+        "status": "referensi"
+    },
+    {
+        "id": 4,
+        "nama_po": "Haryanto",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive, VIP",
+        "status": "referensi"
+    },
+    {
+        "id": 5,
+        "nama_po": "Rosalia Indah",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive, Super Top, Double Decker",
+        "status": "referensi"
+    },
+    {
+        "id": 6,
+        "nama_po": "Harapan Jaya",
+        "wilayah": "Jawa Timur",
+        "jenis_layanan": "AKAP/AKDP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 7,
+        "nama_po": "Gunung Harta",
+        "wilayah": "Bali",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive, Suite Class",
+        "status": "referensi"
+    },
+    {
+        "id": 8,
+        "nama_po": "Kramat Djati",
+        "wilayah": "Jawa Barat",
+        "jenis_layanan": "AKAP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 9,
+        "nama_po": "Lorena",
+        "wilayah": "DKI Jakarta",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 10,
+        "nama_po": "Pahala Kencana",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 11,
+        "nama_po": "ALS",
+        "wilayah": "Sumatera Utara",
+        "jenis_layanan": "AKAP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 12,
+        "nama_po": "NPM",
+        "wilayah": "Sumatera Barat",
+        "jenis_layanan": "AKAP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 13,
+        "nama_po": "ANS",
+        "wilayah": "Sumatera Barat",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 14,
+        "nama_po": "SAN",
+        "wilayah": "Bengkulu",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 15,
+        "nama_po": "RAPI",
+        "wilayah": "Sumatera",
+        "jenis_layanan": "AKAP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 16,
+        "nama_po": "PMTOH",
+        "wilayah": "Aceh",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 17,
+        "nama_po": "Sempati Star",
+        "wilayah": "Aceh",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive, Double Decker",
+        "status": "referensi"
+    },
+    {
+        "id": 18,
+        "nama_po": "Putra Pelangi",
+        "wilayah": "Sumatera Utara",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 19,
+        "nama_po": "Makmur",
+        "wilayah": "Sumatera Utara",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 20,
+        "nama_po": "MPM",
+        "wilayah": "Sumatera Barat",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 21,
+        "nama_po": "Sugeng Rahayu",
+        "wilayah": "Jawa Timur",
+        "jenis_layanan": "AKAP/AKDP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 22,
+        "nama_po": "Eka",
+        "wilayah": "Jawa Timur",
+        "jenis_layanan": "AKAP/AKDP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 23,
+        "nama_po": "Mira",
+        "wilayah": "Jawa Timur",
+        "jenis_layanan": "AKAP/AKDP",
+        "kategori": "Ekonomi",
+        "status": "referensi"
+    },
+    {
+        "id": 24,
+        "nama_po": "Nusantara",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 25,
+        "nama_po": "Bejeu",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 26,
+        "nama_po": "Kencana",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 27,
+        "nama_po": "Maju Lancar",
+        "wilayah": "DI Yogyakarta",
+        "jenis_layanan": "AKAP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 28,
+        "nama_po": "Efisiensi",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP/AKDP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 29,
+        "nama_po": "Sumber Alam",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP/AKDP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 30,
+        "nama_po": "Handoyo",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive, Ekonomi",
+        "status": "referensi"
+    },
+    {
+        "id": 31,
+        "nama_po": "Murni Jaya",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 32,
+        "nama_po": "Santoso",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 33,
+        "nama_po": "DAMRI",
+        "wilayah": "Seluruh Indonesia",
+        "jenis_layanan": "AKAP/AKDP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 34,
+        "nama_po": "Pandawa 87",
+        "wilayah": "Jawa Timur",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive, Double Decker",
+        "status": "referensi"
+    },
+    {
+        "id": 35,
+        "nama_po": "Medali Mas",
+        "wilayah": "Jawa Timur",
+        "jenis_layanan": "AKAP",
+        "kategori": "Ekonomi, Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 36,
+        "nama_po": "Tentrem",
+        "wilayah": "Jawa Timur",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 37,
+        "nama_po": "27 Trans",
+        "wilayah": "Jawa Timur",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 38,
+        "nama_po": "Gunung Mulia",
+        "wilayah": "Jawa Timur",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    },
+    {
+        "id": 39,
+        "nama_po": "Safari Dharma Raya",
+        "wilayah": "Jawa Tengah",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive, Ekonomi",
+        "status": "referensi"
+    },
+    {
+        "id": 40,
+        "nama_po": "Puspa Jaya",
+        "wilayah": "Lampung",
+        "jenis_layanan": "AKAP",
+        "kategori": "Executive",
+        "status": "referensi"
+    }
+]

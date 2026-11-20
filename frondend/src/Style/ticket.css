@@ -1,0 +1,995 @@
+/**
+ * ============================================================
+ * BusTix Official E-Ticket & Boarding Pass Stylesheet — ticket.css
+ * ============================================================
+ * Desain CSS presisi untuk Halaman E-Ticket & Boarding Pass Resmi AKAP
+ * ============================================================
+ */
+
+@import url('./animations.css');
+
+:root {
+  --tkt-primary: #1B4285;
+  --tkt-primary-hover: #153770;
+  --tkt-orange: #f97316;
+  --tkt-orange-hover: #ea580c;
+  --tkt-surface: #f1f5f9;
+  --tkt-card-bg: #ffffff;
+  --tkt-border: #e2e8f0;
+  --tkt-border-blue: #d9e3f6;
+  --tkt-text-main: #0f172a;
+  --tkt-text-sub: #475569;
+  --tkt-text-muted: #64748b;
+  --tkt-text-light: #94a3b8;
+  --tkt-green: #16a34a;
+}
+
+/* ── Container Utama Halaman ─────────────────────────────────── */
+.tkt-page-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--tkt-surface);
+  color: var(--tkt-text-main);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.45s ease-out both;
+}
+
+.tkt-main-content {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3.5rem 1rem;
+  box-sizing: border-box;
+}
+
+/* ── Top Alert Banner (Pembayaran Sukses Lunas) ──────────────── */
+.tkt-success-banner {
+  background: #ffffff;
+  border: 1px solid var(--tkt-border-blue);
+  border-radius: 1.25rem;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-shadow: 0 4px 18px -2px rgba(0, 40, 105, 0.05);
+  margin-bottom: 1.75rem;
+}
+
+.tkt-success-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tkt-success-icon-box {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: #1B4285;
+  color: #ffffff;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.tkt-success-text h3 {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #1B4285;
+  margin: 0 0 0.15rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.tkt-midtrans-tag {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.25rem;
+}
+
+.tkt-success-text p {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.tkt-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tkt-btn-unduh-pdf {
+  background: #f97316;
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.25rem;
+  border-radius: 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 10px rgba(251, 120, 0, 0.25);
+  transition: all 0.15s ease;
+}
+
+.tkt-btn-unduh-pdf:hover {
+  background: #e66e00;
+}
+
+.tkt-btn-share-wa {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1B4285;
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tkt-btn-print-mini {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.65rem;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #1B4285;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ── Layout Utama Grid 2 Kolom (Tiket Digital & Panel Kanan) ─── */
+.tkt-grid-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .tkt-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Kolom Kiri: Boarding Pass Digital ───────────────────────── */
+.tkt-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tkt-pass-card {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  border: 1px solid var(--tkt-border-blue);
+  box-shadow: 0 6px 24px -2px rgba(0, 40, 105, 0.08);
+  overflow: hidden;
+}
+
+/* Header Dark Blue Boarding Pass */
+.tkt-pass-header {
+  background: #1B4285;
+  color: #ffffff;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tkt-pass-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.tkt-bus-logo-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.tkt-pass-header-title h4 {
+  font-size: 0.65rem;
+  color: #93c5fd;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.tkt-pass-header-title h3 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0.1rem 0 0 0;
+}
+
+.tkt-pass-header-pnr {
+  text-align: right;
+}
+
+.tkt-pass-header-pnr span {
+  display: block;
+  font-size: 0.62rem;
+  color: #93c5fd;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.tkt-pass-header-pnr h3 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffffff;
+  font-family: monospace;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tkt-pass-header-pnr h3 span.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f97316;
+}
+
+/* Grid Info Atas: Nomor Polisi, Gate, Kursi, Status */
+.tkt-pass-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+@media (max-width: 600px) {
+  .tkt-pass-meta-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tkt-meta-col span.lbl {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.tkt-meta-col h4 {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #1B4285;
+  margin: 0;
+}
+
+.tkt-meta-col p {
+  font-size: 0.65rem;
+  color: #64748b;
+  margin: 0.15rem 0 0 0;
+}
+
+.tkt-status-boarding-tag {
+  color: #ea580c;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+}
+
+/* Timeline Rute Box */
+.tkt-pass-route-row {
+  padding: 1.25rem 1.5rem;
+  background: #f8faff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.tkt-pass-route-track {
+  display: grid;
+  grid-template-columns: 1.2fr auto 1.2fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  .tkt-pass-route-track {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tkt-route-origin, .tkt-route-dest {
+  display: flex;
+  flex-direction: column;
+}
+
+.tkt-route-dest {
+  text-align: right;
+}
+
+.tkt-route-tag-lbl {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.tkt-route-city {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #1B4285;
+  margin: 0.1rem 0;
+}
+
+.tkt-route-terminal {
+  font-size: 0.68rem;
+  color: #475569;
+  margin: 0;
+}
+
+.tkt-route-date {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #f97316;
+  margin-top: 0.15rem;
+}
+
+.tkt-route-mid-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tkt-highway-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #1B4285;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.tkt-route-line-dots {
+  display: flex;
+  align-items: center;
+  width: 140px;
+  margin: 0.35rem 0;
+}
+
+.tkt-dot-point {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1B4285;
+}
+
+.tkt-dot-point.dest {
+  background: #f97316;
+}
+
+.tkt-line-bar {
+  flex: 1;
+  height: 2px;
+  background: #cbd5e1;
+}
+
+.tkt-est-duration {
+  font-size: 0.62rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Mini Amenities Bar Inside Ticket */
+.tkt-pass-amenities-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #475569;
+  border-top: 1px dashed #d9e3f6;
+  padding-top: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tkt-amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Passenger & QR Code Block */
+.tkt-pass-qr-row {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 1.5rem;
+  align-items: center;
+  background: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .tkt-pass-qr-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tkt-passenger-info-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.tkt-passenger-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tkt-passenger-avatar-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.65rem;
+  background: #eff4ff;
+  border: 1px solid #d9e3f6;
+  color: #1B4285;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
+.tkt-passenger-name-text span {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.tkt-passenger-name-text h4 {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #1B4285;
+  margin: 0;
+}
+
+.tkt-passenger-name-text p {
+  font-size: 0.65rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.tkt-passenger-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  background: #f8faff;
+  border: 1px solid #e9effd;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}
+
+.tkt-detail-item span.lbl {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.tkt-detail-item h5 {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.1rem 0 0 0;
+}
+
+.tkt-system-id {
+  font-size: 0.65rem;
+  color: #64748b;
+}
+
+.tkt-system-id span.code {
+  font-family: monospace;
+  font-weight: 800;
+  color: #1B4285;
+}
+
+/* Big Boarding QR Box */
+.tkt-pass-qr-box {
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tkt-qr-scan-title {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #1B4285;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.tkt-qr-img {
+  width: 130px;
+  height: 130px;
+  background: #ffffff;
+  padding: 4px;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tkt-qr-code-txt {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #1B4285;
+  font-family: monospace;
+}
+
+.tkt-qr-instruction-txt {
+  font-size: 0.58rem;
+  color: #64748b;
+  margin-top: 0.2rem;
+}
+
+/* Barcode Bottom Section */
+.tkt-pass-barcode-footer {
+  background: #f8fafc;
+  border-top: 1px dashed #cbd5e1;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tkt-barcode-lines {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.tkt-barcode-lines span {
+  display: inline-block;
+  height: 100%;
+  background: #0f172a;
+}
+
+.tkt-barcode-text {
+  font-size: 0.65rem;
+  font-family: monospace;
+  letter-spacing: 0.15em;
+  color: #64748b;
+}
+
+.tkt-pass-validation-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.62rem;
+  color: #94a3b8;
+  margin-top: 0.5rem;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 0.5rem;
+}
+
+/* Bottom Actions Under Ticket */
+.tkt-bottom-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.tkt-btn-action-pill {
+  background: #1B4285;
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tkt-btn-action-outline {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1B4285;
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ── Kolom Kanan: Ketentuan, Titik Naik, Armada ──────────────── */
+.tkt-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* 1. Ketentuan Boarding Bus */
+.tkt-rules-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid var(--tkt-border);
+  padding: 1.25rem;
+  box-shadow: 0 4px 18px -2px rgba(0, 40, 105, 0.04);
+}
+
+.tkt-rules-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  font-weight: 900;
+  color: #1B4285;
+  margin-bottom: 1rem;
+}
+
+.tkt-rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.tkt-rule-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.tkt-rule-num {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: #eff4ff;
+  color: #1B4285;
+  font-size: 0.65rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.tkt-rule-text h5 {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.15rem 0;
+}
+
+.tkt-rule-text p {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* 2. Titik Naik Terminal Map */
+.tkt-location-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid var(--tkt-border);
+  padding: 1.25rem;
+  box-shadow: 0 4px 18px -2px rgba(0, 40, 105, 0.04);
+}
+
+.tkt-location-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.tkt-location-title {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #1B4285;
+}
+
+.tkt-peron-badge {
+  background: #ffedd5;
+  color: #c2410c;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.25rem;
+}
+
+.tkt-location-map-container {
+  height: 120px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0.75rem;
+  border: 1px solid #d9e3f6;
+}
+
+.tkt-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tkt-location-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+}
+
+.tkt-open-map-link {
+  color: #1B4285;
+  font-weight: 800;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+}
+
+/* 3. Armada Anda Hari Ini */
+.tkt-fleet-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid var(--tkt-border);
+  padding: 1.25rem;
+  box-shadow: 0 4px 18px -2px rgba(0, 40, 105, 0.04);
+}
+
+.tkt-fleet-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #1B4285;
+  margin: 0 0 0.75rem 0;
+}
+
+.tkt-fleet-img-box {
+  height: 120px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+.tkt-fleet-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tkt-fleet-overlay-tag {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  background: rgba(0, 40, 105, 0.85);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.tkt-fleet-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+}
+
+.tkt-fleet-detail-row {
+  display: flex;
+  justify-content: space-between;
+  color: #64748b;
+}
+
+.tkt-fleet-detail-row span.val {
+  color: #1B4285;
+  font-weight: 800;
+}
+
+/* --------------------------------------------------------------
+   RESPONSIVE HP KECIL � Ticket Page (=600px, =480px)
+   -------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .tkt-route-dest {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .tkt-pass-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem 1.125rem;
+  }
+
+  .tkt-pass-header-left {
+    gap: 0.6rem;
+    min-width: 0;
+  }
+
+  .tkt-pass-header-title h3 {
+    font-size: 1.05rem;
+  }
+
+  .tkt-pass-header-pnr {
+    text-align: left;
+  }
+
+  .tkt-pass-header-pnr h3 {
+    font-size: 1.1rem;
+  }
+
+  .tkt-pass-meta-grid,
+  .tkt-pass-qr-row {
+    padding: 1rem 1.125rem;
+  }
+
+  .tkt-pass-validation-row {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    line-height: 1.4;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRINT & PDF MODE — HANYA 1 HALAMAN KARTU "SCAN SAAT NAIK ARMADA"
+═══════════════════════════════════════════════════════════════ */
+@media print {
+  @page {
+    size: 80mm 110mm;
+    margin: 4mm;
+  }
+
+  html,
+  body,
+  #root {
+    height: auto !important;
+    min-height: 0 !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .tkt-page-container {
+    min-height: 0 !important;
+    height: auto !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .tkt-page-container::before,
+  .tkt-page-container::after,
+  body::before,
+  body::after,
+  #root::before,
+  #root::after,
+  *::before,
+  *::after {
+    display: none !important;
+    background: none !important;
+    background-image: none !important;
+  }
+
+  .tkt-toast-banner,
+  .nav-header,
+  .tkt-success-banner,
+  .tkt-pass-header,
+  .tkt-pass-meta-grid,
+  .tkt-pass-route-row,
+  .tkt-passenger-info-left,
+  .tkt-pass-barcode-footer,
+  .tkt-bottom-action-buttons,
+  .tkt-right-col,
+  .search-footer,
+  .tkt-left-col > div:not(.tkt-pass-card) {
+    display: none !important;
+  }
+
+  .tkt-main-content,
+  .tkt-grid-layout,
+  .tkt-left-col,
+  .tkt-pass-card,
+  .tkt-pass-qr-row {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .tkt-pass-qr-box {
+    width: 100% !important;
+    max-width: 240px !important;
+    box-sizing: border-box !important;
+    padding: 16px 14px !important;
+    background: #f0f7ff !important;
+    border: 1.5px solid #bfdbfe !important;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .tkt-pass-qr-box .tkt-qr-img {
+    width: 170px !important;
+    height: 170px !important;
+    margin: 0 auto 10px !important;
+    background: #ffffff !important;
+    padding: 8px !important;
+    border-radius: 12px !important;
+  }
+}

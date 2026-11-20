@@ -1,0 +1,1239 @@
+/* ==========================================================================
+   GOVIA CUSTOMER WEB — SETTINGS MODAL, THEME CONTROLS & DARK MODE
+   ========================================================================== */
+
+/* ── Quick Icon Buttons in Navbar & Landing Page ─────────────────────────── */
+.nav-icon-circle-btn,
+.lp-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border-radius: 9999px;
+  background: rgba(27, 66, 133, 0.06);
+  border: 1.5px solid rgba(27, 66, 133, 0.14);
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nav-icon-circle-btn:hover,
+.lp-icon-btn:hover {
+  background: rgba(250, 120, 8, 0.12);
+  border-color: rgba(250, 120, 8, 0.4);
+  color: #FA7808;
+  transform: translateY(-1px);
+}
+
+.nav-user-profile.clickable,
+.lp-user-badge.clickable,
+.nav-mobile-user-card.clickable,
+.lp-mobile-user-card.clickable {
+  cursor: pointer;
+}
+
+.lp-user-avatar-mini {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1B4285 0%, #295ab0 100%);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.lp-user-avatar-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Settings Modal ──────────────────────────────────────────────────────── */
+.cust-settings-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(2, 6, 23, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: cust-fade-in 0.18s ease-out;
+}
+
+@keyframes cust-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cust-settings-modal {
+  width: 100%;
+  max-width: 480px;
+  background: var(--c-surface-lowest, #ffffff);
+  color: var(--c-on-surface, #121c2a);
+  border: 1px solid var(--c-outline-variant, #d9e3f6);
+  border-radius: 1.25rem;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.32);
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.cust-settings-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1.25rem 1.375rem 1rem;
+  border-bottom: 1px solid var(--c-outline-variant, #e2e8f5);
+}
+
+.cust-settings-title {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: var(--c-on-surface, #0f172a);
+  margin: 0;
+}
+
+.cust-settings-sub {
+  font-size: 0.75rem;
+  color: var(--c-on-surface-variant, #64748b);
+  margin-top: 0.25rem;
+  line-height: 1.45;
+}
+
+.cust-settings-close {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.625rem;
+  border: 1px solid var(--c-outline-variant, #d9e3f6);
+  background: var(--c-surface-container-low, #f1f5f9);
+  color: var(--c-on-surface-variant, #475569);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.cust-settings-close:hover {
+  border-color: #FA7808;
+  color: #FA7808;
+}
+
+.cust-settings-body {
+  padding: 1.25rem 1.375rem 1.375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.cust-settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cust-settings-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--c-on-surface, #0f172a);
+}
+
+.cust-settings-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cust-settings-avatar-preview {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1B4285 0%, #2a5eb0 100%);
+  color: #ffffff;
+  font-size: 1.375rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 3px solid var(--c-outline-variant, #d9e3f6);
+  flex-shrink: 0;
+}
+
+.cust-settings-avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cust-settings-avatar-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.cust-settings-btn-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cust-settings-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.625rem;
+  border: 1.5px solid var(--c-outline-variant, #cbd5e1);
+  background: var(--c-surface-container-low, #eff4ff);
+  color: var(--c-on-surface, #1B4285);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cust-settings-upload-btn:hover {
+  border-color: #FA7808;
+  color: #FA7808;
+}
+
+.cust-settings-remove-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.625rem;
+  border: 1.5px solid rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cust-settings-hint {
+  font-size: 0.7rem;
+  color: var(--c-on-surface-variant, #64748b);
+  line-height: 1.4;
+}
+
+.cust-settings-input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid var(--c-outline-variant, #cbd5e1);
+  background: var(--c-surface-container-low, #f8fafc);
+  color: var(--c-on-surface, #0f172a);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cust-settings-input:focus {
+  border-color: #FA7808;
+  box-shadow: 0 0 0 3px rgba(250, 120, 8, 0.18);
+}
+
+.cust-settings-theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.625rem;
+}
+
+.cust-settings-theme-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem;
+  border-radius: 0.875rem;
+  border: 1.5px solid var(--c-outline-variant, #d9e3f6);
+  background: var(--c-surface-container-low, #f8fafc);
+  color: var(--c-on-surface, #0f172a);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.18s ease;
+}
+
+.cust-settings-theme-card.active {
+  border-color: #FA7808;
+  box-shadow: 0 0 0 3px rgba(250, 120, 8, 0.18);
+}
+
+.cust-settings-theme-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 0.625rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cust-settings-theme-icon.light {
+  background: #fff7ed;
+  color: #f97316;
+  border: 1px solid #fed7aa;
+}
+
+.cust-settings-theme-icon.dark {
+  background: #0f172a;
+  color: #fbbf24;
+  border: 1px solid #334155;
+}
+
+.cust-settings-theme-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cust-settings-theme-info strong {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--c-on-surface, #0f172a);
+}
+
+.cust-settings-theme-info small {
+  font-size: 0.67rem;
+  color: var(--c-on-surface-variant, #64748b);
+  line-height: 1.3;
+}
+
+.cust-settings-check {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: #FA7808;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cust-settings-alert {
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.cust-settings-alert.error {
+  background: rgba(239, 68, 68, 0.14);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+}
+
+.cust-settings-alert.success {
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #10b981;
+}
+
+.cust-settings-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.625rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--c-outline-variant, #e2e8f5);
+}
+
+.cust-settings-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cust-settings-reset-btn,
+.cust-settings-cancel-btn {
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.625rem;
+  border: 1.5px solid var(--c-outline-variant, #cbd5e1);
+  background: var(--c-surface-container-low, #f8fafc);
+  color: var(--c-on-surface-variant, #475569);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cust-settings-save-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 0.625rem;
+  border: none;
+  background: linear-gradient(135deg, #FA7808 0%, #ff8c1a 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(250, 120, 8, 0.32);
+}
+
+.cust-settings-save-btn:hover {
+  filter: brightness(0.95);
+}
+
+@media (max-width: 480px) {
+  .cust-settings-theme-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   CUSTOMER WEB — GLOBAL DARK MODE THEME
+   ========================================================================== */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Global index.css tokens */
+  --govia-blue: #60a5fa;
+  --c-primary: #60a5fa;
+  --c-primary-container: #1d4ed8;
+  --c-surface: #0b1220;
+  --c-surface-lowest: #111b2e;
+  --c-surface-container-low: #162238;
+  --c-surface-container: #1b2a44;
+  --c-surface-container-high: #223454;
+  --c-surface-container-highest: #283d62;
+  --c-surface-variant: #253552;
+  --c-on-surface: #f1f5f9;
+  --c-on-surface-variant: #94a3b8;
+  --c-outline: #64748b;
+  --c-outline-variant: #253552;
+
+  /* animations.css global tokens */
+  --g-bg: #0b1220;
+  --g-surface: #111b2e;
+  --g-surface-2: #162238;
+  --g-border: #253552;
+  --g-border-blue: #2e456e;
+  --g-navy: #60a5fa;
+  --g-navy-light: rgba(59, 130, 246, 0.16);
+  --g-blue-light: rgba(59, 130, 246, 0.18);
+  --g-orange-light: rgba(249, 115, 22, 0.16);
+  --g-text: #f1f5f9;
+  --g-text-sub: #cbd5e1;
+  --g-text-muted: #94a3b8;
+  --g-text-light: #64748b;
+  --g-green-light: rgba(22, 163, 74, 0.16);
+  --g-red-light: rgba(220, 38, 38, 0.16);
+
+  /* Navbar tokens */
+  --nav-primary: #60a5fa;
+  --nav-primary-hover: #93c5fd;
+  --nav-surface-low: #182640;
+  --nav-border: #23334f;
+  --nav-text-dark: #f1f5f9;
+  --nav-text-sub: #cbd5e1;
+  --nav-text-muted: #94a3b8;
+
+  /* Landing page tokens */
+  --lp-primary: #60a5fa;
+  --lp-card-bg: #111b2e;
+  --lp-border-subtle: #23334f;
+  --lp-text-dark: #f1f5f9;
+  --lp-text-mid: #cbd5e1;
+  --lp-text-muted: #94a3b8;
+  --lp-orange-light: rgba(250, 120, 8, 0.16);
+
+  /* Search / Jadwal / Seats / Payment / Pesanan / Ticket / Chatbot / Login / Register tokens */
+  --search-primary: #60a5fa;
+  --search-primary-light: rgba(59, 130, 246, 0.16);
+  --search-surface: #0b1220;
+  --search-card-bg: #111b2e;
+  --search-border: #253552;
+  --search-border-blue: #2e456e;
+  --search-text-main: #f1f5f9;
+  --search-text-sub: #cbd5e1;
+  --search-text-muted: #94a3b8;
+  --search-blue-tag: rgba(59, 130, 246, 0.18);
+  --search-blue-tag-text: #93c5fd;
+
+  --jdw-primary: #60a5fa;
+  --jdw-surface: #0b1220;
+  --jdw-card-bg: #111b2e;
+  --jdw-border: #253552;
+  --jdw-border-blue: #2e456e;
+  --jdw-text-main: #f1f5f9;
+  --jdw-text-sub: #cbd5e1;
+  --jdw-text-muted: #94a3b8;
+  --jdw-blue-tag: rgba(59, 130, 246, 0.16);
+
+  --seat-primary: #60a5fa;
+  --seat-primary-light: rgba(59, 130, 246, 0.16);
+  --seat-bg: #0b1220;
+  --seat-card-bg: #111b2e;
+  --seat-border: #253552;
+  --seat-text-main: #f1f5f9;
+  --seat-text-muted: #94a3b8;
+  --seat-blue-available: rgba(59, 130, 246, 0.22);
+  --seat-blue-text: #93c5fd;
+  --seat-gray-occupied: #334155;
+  --seat-gray-text: #94a3b8;
+
+  --pay-primary: #60a5fa;
+  --pay-surface: #0b1220;
+  --pay-card-bg: #111b2e;
+  --pay-border: #253552;
+  --pay-border-blue: #2e456e;
+  --pay-text-main: #f1f5f9;
+  --pay-text-sub: #cbd5e1;
+  --pay-text-muted: #94a3b8;
+  --pay-blue-light: rgba(59, 130, 246, 0.16);
+
+  --ord-primary: #60a5fa;
+  --ord-primary-light: rgba(59, 130, 246, 0.16);
+  --ord-surface: #0b1220;
+  --ord-card-bg: #111b2e;
+  --ord-border: #253552;
+  --ord-border-blue: #2e456e;
+  --ord-text-main: #f1f5f9;
+  --ord-text-sub: #cbd5e1;
+  --ord-text-muted: #94a3b8;
+  --ord-green-bg: rgba(22, 163, 74, 0.18);
+  --ord-blue-light: rgba(59, 130, 246, 0.18);
+
+  --tkt-primary: #60a5fa;
+  --tkt-surface: #0b1220;
+  --tkt-card-bg: #111b2e;
+  --tkt-border: #253552;
+  --tkt-border-blue: #2e456e;
+  --tkt-text-main: #f1f5f9;
+  --tkt-text-sub: #cbd5e1;
+  --tkt-text-muted: #94a3b8;
+
+  --cb-primary: #60a5fa;
+  --cb-bg: #0b1220;
+  --cb-card-bg: #111b2e;
+  --cb-border: #253552;
+  --cb-border-subtle: #2e456e;
+  --cb-text-dark: #f1f5f9;
+  --cb-text-sub: #cbd5e1;
+  --cb-text-muted: #94a3b8;
+  --cb-bubble-ai: #162238;
+
+  --login-primary: #60a5fa;
+  --login-surface: #0b1220;
+  --login-surface-low: #162238;
+  --login-card-bg: #111b2e;
+  --login-border: #253552;
+  --login-border-input: #33486d;
+  --login-text-dark: #f1f5f9;
+  --login-text-sub: #cbd5e1;
+  --login-text-muted: #94a3b8;
+
+  --reg-primary: #60a5fa;
+  --reg-surface: #0b1220;
+  --reg-surface-low: #162238;
+  --reg-card-bg: #111b2e;
+  --reg-border: #253552;
+  --reg-border-input: #33486d;
+  --reg-text-dark: #f1f5f9;
+  --reg-text-sub: #cbd5e1;
+  --reg-text-muted: #94a3b8;
+}
+
+html[data-theme="dark"] body {
+  background-color: #080f1d;
+  color: #f1f5f9;
+}
+
+/* Pertahankan background wallpaper bus tetap terlihat dengan efek gelap elegan */
+html[data-theme="dark"] body::before {
+  opacity: 0.42;
+  filter: brightness(0.5) contrast(1.12) saturate(1.08);
+}
+
+html[data-theme="dark"] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(15, 29, 58, 0.28) 0%, rgba(7, 13, 26, 0.72) 100%),
+    linear-gradient(180deg, rgba(8, 15, 29, 0.52) 0%, rgba(11, 18, 32, 0.36) 50%, rgba(7, 13, 26, 0.76) 100%);
+}
+
+/* Navbar dark mode */
+html[data-theme="dark"] .nav-header,
+html[data-theme="dark"] .lp-navbar,
+html[data-theme="dark"] .lp-navbar.scrolled {
+  background-color: rgba(11, 19, 36, 0.92);
+  background: rgba(11, 19, 36, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: #23334f;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .nav-mobile-menu,
+html[data-theme="dark"] .lp-mobile-dropdown {
+  background-color: #111b2e;
+  background: #111b2e;
+  border-bottom-color: #23334f;
+}
+
+html[data-theme="dark"] .nav-user-profile,
+html[data-theme="dark"] .lp-user-badge {
+  background: linear-gradient(135deg, #162238 0%, #1c2c4a 100%);
+  border-color: #2b3f63;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="dark"] .nav-user-profile:hover,
+html[data-theme="dark"] .lp-user-badge:hover {
+  background: linear-gradient(135deg, #1a2a45 0%, #223557 100%);
+  border-color: #3b5585;
+}
+
+html[data-theme="dark"] .nav-badge {
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  border-color: rgba(96, 165, 250, 0.28);
+}
+
+html[data-theme="dark"] .nav-fcm-btn,
+html[data-theme="dark"] .nav-icon-circle-btn,
+html[data-theme="dark"] .lp-icon-btn {
+  background: rgba(148, 163, 184, 0.1);
+  border-color: rgba(148, 163, 184, 0.22);
+  color: #e2e8f0;
+}
+
+/* Logo transparan TANPA kotak/background putih di mode gelap */
+html[data-theme="dark"] .nav-brand-logo-img,
+html[data-theme="dark"] .lp-nav-logo,
+html[data-theme="dark"] .lp-footer-logo-img,
+html[data-theme="dark"] .search-footer-brand-img,
+html[data-theme="dark"] .bustix-logo {
+  background: transparent !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: brightness(1.36) contrast(1.08) drop-shadow(0 0 1.2px rgba(255, 255, 255, 0.72)) drop-shadow(0 2px 10px rgba(96, 165, 250, 0.22));
+}
+
+/* Landing Page dark mode */
+html[data-theme="dark"] .lp-nav-link,
+html[data-theme="dark"] .lp-mobile-item,
+html[data-theme="dark"] .lp-user-name,
+html[data-theme="dark"] .lp-mobile-user-name {
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] .lp-nav-link:hover,
+html[data-theme="dark"] .lp-nav-link.active,
+html[data-theme="dark"] .lp-mobile-item:hover {
+  background: #182640;
+  color: #60a5fa;
+}
+
+html[data-theme="dark"] .lp-btn-ghost-login,
+html[data-theme="dark"] .lp-btn-outline-viewall {
+  background: #162238;
+  border-color: #2e456e;
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] .lp-mobile-toggle {
+  background: #162238;
+  border-color: #253552;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .lp-mobile-user-card {
+  background: #162238;
+  border-color: #253552;
+}
+
+html[data-theme="dark"] .lp-payment-strip,
+html[data-theme="dark"] .lp-journey-guide-section,
+html[data-theme="dark"] .lp-partners-section,
+html[data-theme="dark"] .lp-features-section {
+  background: rgba(11, 18, 32, 0.8);
+  background-color: rgba(11, 18, 32, 0.8);
+  border-color: #23334f;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+html[data-theme="dark"] .lp-routes-section {
+  background: rgba(14, 23, 41, 0.76);
+  background-color: rgba(14, 23, 41, 0.76);
+}
+
+html[data-theme="dark"] .lp-search-container,
+html[data-theme="dark"] .lp-features-box,
+html[data-theme="dark"] .lp-journey-card.highlight-step,
+html[data-theme="dark"] .lp-route-card-item,
+html[data-theme="dark"] .lp-partner-card:hover,
+html[data-theme="dark"] .lp-journey-btn-next {
+  background: rgba(17, 27, 46, 0.92);
+  background-color: rgba(17, 27, 46, 0.92);
+  border-color: #253552;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .lp-journey-card,
+html[data-theme="dark"] .lp-partner-card,
+html[data-theme="dark"] .lp-input-text,
+html[data-theme="dark"] .lp-input-select,
+html[data-theme="dark"] .lp-pay-pill,
+html[data-theme="dark"] .lp-mini-badge,
+html[data-theme="dark"] .lp-swap-btn,
+html[data-theme="dark"] .lp-trust-badge,
+html[data-theme="dark"] .lp-footer-pay-pills .lp-pay-pill,
+html[data-theme="dark"] .lp-quick-tags span {
+  background: #162238;
+  background-color: #162238;
+  border-color: #253552;
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] .lp-search-modes,
+html[data-theme="dark"] .lp-search-assurance,
+html[data-theme="dark"] .lp-route-card-bottom,
+html[data-theme="dark"] .lp-footer-security-section,
+html[data-theme="dark"] .lp-footer-bottom-bar {
+  border-color: #253552;
+}
+
+html[data-theme="dark"] .lp-search-tab:hover {
+  background: #182640;
+}
+
+html[data-theme="dark"] .lp-search-tab.active,
+html[data-theme="dark"] .lp-btn-card-book {
+  background: #1d4ed8;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .lp-input-text:focus,
+html[data-theme="dark"] .lp-input-select:focus {
+  background-color: #1b2a44;
+}
+
+html[data-theme="dark"] .lp-section-title,
+html[data-theme="dark"] .lp-feat-title,
+html[data-theme="dark"] .lp-journey-title,
+html[data-theme="dark"] .lp-partner-name,
+html[data-theme="dark"] .lp-route-city-block .city-name,
+html[data-theme="dark"] .lp-price-val,
+html[data-theme="dark"] .lp-form-label,
+html[data-theme="dark"] .lp-footer-head,
+html[data-theme="dark"] .lp-footer-subhead {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .lp-section-sub,
+html[data-theme="dark"] .lp-feat-desc,
+html[data-theme="dark"] .lp-journey-desc,
+html[data-theme="dark"] .lp-partner-meta,
+html[data-theme="dark"] .lp-payment-title,
+html[data-theme="dark"] .lp-assurance-item,
+html[data-theme="dark"] .lp-route-city-block .terminal-note,
+html[data-theme="dark"] .lp-route-operator-line,
+html[data-theme="dark"] .lp-route-duration-line,
+html[data-theme="dark"] .lp-price-label,
+html[data-theme="dark"] .lp-footer-desc,
+html[data-theme="dark"] .lp-footer-subdesc,
+html[data-theme="dark"] .lp-footer-copyright,
+html[data-theme="dark"] .lp-footer-bottom-links span {
+  color: #94a3b8;
+}
+
+html[data-theme="dark"] .lp-footer {
+  background: rgba(9, 15, 29, 0.92);
+  border-top-color: #23334f;
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .lp-footer-menu li span,
+html[data-theme="dark"] .lp-footer-menu li a {
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .lp-footer-menu li span:hover,
+html[data-theme="dark"] .lp-footer-menu li a:hover,
+html[data-theme="dark"] .lp-footer-bottom-links span:hover {
+  color: #60a5fa;
+}
+
+/* Search Page dark mode (termasuk fix header Kelas Sleeper & seluruh kartu) */
+html[data-theme="dark"] .search-bus-highlight-header {
+  background: linear-gradient(90deg, #0f254f 0%, #1B4285 100%) !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #2e456e;
+}
+
+html[data-theme="dark"] .search-bus-highlight-left {
+  color: #fde68a !important;
+}
+
+html[data-theme="dark"] .search-bus-card,
+html[data-theme="dark"] .search-sidebar-card,
+html[data-theme="dark"] .search-guarantee-card,
+html[data-theme="dark"] .search-mini-tabs,
+html[data-theme="dark"] .search-mini-route-pill {
+  background: rgba(17, 27, 46, 0.92);
+  background-color: rgba(17, 27, 46, 0.92);
+  border-color: #253552;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .search-bus-card.closed {
+  background: rgba(15, 23, 42, 0.78);
+}
+
+html[data-theme="dark"] .search-date-tabs,
+html[data-theme="dark"] .search-class-pill,
+html[data-theme="dark"] .search-origin-info-box,
+html[data-theme="dark"] .search-sort-select,
+html[data-theme="dark"] .search-bus-track-middle,
+html[data-theme="dark"] .search-bus-closed-box,
+html[data-theme="dark"] .search-route-dist-tag,
+html[data-theme="dark"] .search-rest-cta-btn,
+html[data-theme="dark"] .search-footer-badge-pill {
+  background: #162238;
+  background-color: #162238;
+  border-color: #253552;
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] .search-mini-tab.active,
+html[data-theme="dark"] .search-date-btn.active,
+html[data-theme="dark"] .search-class-pill.active {
+  background: #1d4ed8;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .search-date-btn,
+html[data-theme="dark"] .search-mini-tab {
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .search-calendar-btn {
+  background: rgba(249, 115, 22, 0.18);
+  border-color: rgba(249, 115, 22, 0.45);
+  color: #fdba74;
+}
+
+html[data-theme="dark"] .search-rest-banner {
+  background: rgba(23, 37, 84, 0.72);
+  border-color: #2e456e;
+}
+
+html[data-theme="dark"] .search-footer {
+  background: rgba(9, 15, 29, 0.92);
+  border-top-color: #23334f;
+}
+
+html[data-theme="dark"] .search-footer-bottom {
+  border-top-color: #23334f;
+}
+
+html[data-theme="dark"] .search-sidebar-title,
+html[data-theme="dark"] .search-results-count,
+html[data-theme="dark"] .search-bus-operator-name,
+html[data-theme="dark"] .search-bus-price-amount,
+html[data-theme="dark"] .search-origin-title,
+html[data-theme="dark"] .search-guarantee-title,
+html[data-theme="dark"] .search-rest-text h4,
+html[data-theme="dark"] .search-footer-col h5 {
+  color: #93c5fd;
+}
+
+html[data-theme="dark"] .search-filter-label,
+html[data-theme="dark"] .search-guarantee-list-item,
+html[data-theme="dark"] .search-bus-point h5 {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .search-checkbox-item,
+html[data-theme="dark"] .search-price-range-labels,
+html[data-theme="dark"] .search-bus-amenity-chip,
+html[data-theme="dark"] .search-sort-dropdown,
+html[data-theme="dark"] .search-rest-text p,
+html[data-theme="dark"] .search-footer-links li a {
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .search-filter-section {
+  border-bottom-color: #23334f;
+}
+
+html[data-theme="dark"] .search-bus-timeline-line {
+  background: #3b82f6;
+}
+
+html[data-theme="dark"] .search-bus-point-dot {
+  border-color: #111b2e;
+}
+
+/* Jadwal / Seats / Payment / Pesanan / Ticket / Login / Register dark mode */
+html[data-theme="dark"] .jdw-search-card,
+html[data-theme="dark"] .jdw-details-card,
+html[data-theme="dark"] .jdw-locations-card,
+html[data-theme="dark"] .seat-card,
+html[data-theme="dark"] .seat-trip-card,
+html[data-theme="dark"] .seat-passenger-form-card,
+html[data-theme="dark"] .seat-fare-card,
+html[data-theme="dark"] .seat-amenities-section,
+html[data-theme="dark"] .pay-stepper-bar,
+html[data-theme="dark"] .pay-method-card,
+html[data-theme="dark"] .pay-invoice-card,
+html[data-theme="dark"] .ord-card,
+html[data-theme="dark"] .ord-user-profile-card,
+html[data-theme="dark"] .rfd-modal,
+html[data-theme="dark"] .tkt-pass-card,
+html[data-theme="dark"] .tkt-rules-card,
+html[data-theme="dark"] .tkt-location-card,
+html[data-theme="dark"] .tkt-fleet-card,
+html[data-theme="dark"] .login-card,
+html[data-theme="dark"] .reg-card {
+  background: rgba(17, 27, 46, 0.92);
+  background-color: rgba(17, 27, 46, 0.92);
+  border-color: #253552;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .jdw-input-box,
+html[data-theme="dark"] .jdw-swap-btn,
+html[data-theme="dark"] .jdw-shortcut-btn,
+html[data-theme="dark"] .jdw-facilities-box,
+html[data-theme="dark"] .jdw-facility-item,
+html[data-theme="dark"] .jdw-location-tab-btn,
+html[data-theme="dark"] .jdw-terminal-chip,
+html[data-theme="dark"] .jdw-btn-gmaps,
+html[data-theme="dark"] .seat-stepper-container,
+html[data-theme="dark"] .seat-legend-bar,
+html[data-theme="dark"] .seat-bus-cabin,
+html[data-theme="dark"] .seat-amenity-card,
+html[data-theme="dark"] .seat-input,
+html[data-theme="dark"] .seat-date-badge,
+html[data-theme="dark"] .seat-fare-total-box,
+html[data-theme="dark"] .seat-selected-highlight-card,
+html[data-theme="dark"] .pay-qris-body,
+html[data-theme="dark"] .pay-total-card-box,
+html[data-theme="dark"] .pay-timer-banner,
+html[data-theme="dark"] .pay-helpdesk-pill,
+html[data-theme="dark"] .ord-search-input-box,
+html[data-theme="dark"] .ord-select-schedule,
+html[data-theme="dark"] .ord-refresh-btn,
+html[data-theme="dark"] .ord-status-tab-btn,
+html[data-theme="dark"] .ord-route-track-box,
+html[data-theme="dark"] .ord-telemetry-box,
+html[data-theme="dark"] .ord-stat-box,
+html[data-theme="dark"] .ord-boarding-tip,
+html[data-theme="dark"] .rfd-summary,
+html[data-theme="dark"] .rfd-input,
+html[data-theme="dark"] .tkt-pass-meta-grid,
+html[data-theme="dark"] .tkt-pass-route-row,
+html[data-theme="dark"] .tkt-pass-qr-row,
+html[data-theme="dark"] .tkt-pass-barcode-footer,
+html[data-theme="dark"] .tkt-btn-action-outline,
+html[data-theme="dark"] .login-google-btn,
+html[data-theme="dark"] .reg-google-btn {
+  background: #162238;
+  background-color: #162238;
+  border-color: #253552;
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] .tkt-success-banner {
+  background: rgba(22, 163, 74, 0.15);
+  border-color: rgba(74, 222, 128, 0.35);
+  color: #dcfce7;
+}
+
+html[data-theme="dark"] .tkt-pass-qr-box {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+html[data-theme="dark"] .ord-footer,
+html[data-theme="dark"] .login-site-footer,
+html[data-theme="dark"] .reg-site-footer {
+  background: rgba(9, 15, 29, 0.92);
+  border-top-color: #23334f;
+  color: #94a3b8;
+}
+
+/* Chatbot dark mode */
+html[data-theme="dark"] .cb-top-bar,
+html[data-theme="dark"] .cb-chat-header,
+html[data-theme="dark"] .cb-msg-bubble-ai,
+html[data-theme="dark"] .cb-telemetry-card,
+html[data-theme="dark"] .cb-quick-prompts,
+html[data-theme="dark"] .cb-prompt-chip,
+html[data-theme="dark"] .cb-input-area,
+html[data-theme="dark"] .cb-input-field,
+html[data-theme="dark"] .cb-site-footer,
+html[data-theme="dark"] .cb-emergency-btn {
+  background-color: #111b2e;
+  background: #111b2e;
+  border-color: #253552;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .cb-messages-area,
+html[data-theme="dark"] .cb-meta-row {
+  background-color: #0e1729;
+  border-color: #253552;
+}
+
+/* Pickup Page dark mode */
+html[data-theme="dark"] .pkp-page-container {
+  background: transparent;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .pkp-toolbar-card,
+html[data-theme="dark"] .pkp-section-card,
+html[data-theme="dark"] .pkp-req-item:hover,
+html[data-theme="dark"] .pkp-req-item.selected,
+html[data-theme="dark"] .pkp-input,
+html[data-theme="dark"] .pkp-btn-staff-step,
+html[data-theme="dark"] .pkp-btn-outline,
+html[data-theme="dark"] .pkp-allowed-row {
+  background: #111b2e;
+  border-color: #253552;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .pkp-search-box,
+html[data-theme="dark"] .pkp-filter-pill:not(.active),
+html[data-theme="dark"] .pkp-refresh-mini,
+html[data-theme="dark"] .pkp-req-item,
+html[data-theme="dark"] .pkp-coord-bar,
+html[data-theme="dark"] .pkp-step-box:not(.current),
+html[data-theme="dark"] .pkp-info-cell,
+html[data-theme="dark"] .pkp-notes-banner,
+html[data-theme="dark"] .pkp-role-action-box,
+html[data-theme="dark"] .pkp-add-point-form {
+  background: #162238;
+  border-color: #253552;
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] .pkp-step-box.current,
+html[data-theme="dark"] .pkp-role-action-box.staf {
+  background: rgba(249, 115, 22, 0.14);
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+html[data-theme="dark"] .pkp-search-box input,
+html[data-theme="dark"] .pkp-card-head h3,
+html[data-theme="dark"] .pkp-req-loc-title,
+html[data-theme="dark"] .pkp-info-cell strong,
+html[data-theme="dark"] .pkp-role-action-box h4 {
+  color: #f1f5f9;
+}
+
+/* Generic white cards & inline light styles across Customer Dashboard / Search / Jadwal / Payment / Pesanan / Ticket / Login / Register */
+html[data-theme="dark"] .bustix-header {
+  background: rgba(13, 21, 38, 0.92);
+}
+
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] [style*="background: rgb(255, 255, 255)"]:not([data-keep-theme="true"]),
+html[data-theme="dark"] [style*="background-color: rgb(255, 255, 255)"]:not([data-keep-theme="true"]) {
+  background: #111b2e !important;
+  background-color: #111b2e !important;
+  border-color: #253552 !important;
+}
+
+html[data-theme="dark"] [style*="background: rgb(248, 250, 252)"],
+html[data-theme="dark"] [style*="background-color: rgb(248, 250, 252)"],
+html[data-theme="dark"] [style*="background: rgb(241, 245, 249)"],
+html[data-theme="dark"] [style*="background-color: rgb(241, 245, 249)"],
+html[data-theme="dark"] [style*="background: rgb(245, 247, 255)"] {
+  background: #162238 !important;
+  background-color: #162238 !important;
+  border-color: #253552 !important;
+}
+
+html[data-theme="dark"] [style*="background: rgb(239, 246, 255)"],
+html[data-theme="dark"] [style*="background-color: rgb(239, 246, 255)"] {
+  background: rgba(30, 58, 138, 0.28) !important;
+  border-color: rgba(96, 165, 250, 0.38) !important;
+  color: #dbeafe !important;
+}
+
+html[data-theme="dark"] [style*="background: rgb(255, 247, 237)"],
+html[data-theme="dark"] [style*="background-color: rgb(255, 247, 237)"] {
+  background: rgba(154, 52, 18, 0.24) !important;
+  border-color: rgba(251, 146, 60, 0.4) !important;
+  color: #fed7aa !important;
+}
+
+html[data-theme="dark"] [style*="background: rgb(236, 253, 245)"],
+html[data-theme="dark"] [style*="background: rgb(240, 253, 244)"],
+html[data-theme="dark"] [style*="background: rgb(220, 252, 231)"] {
+  background: rgba(20, 83, 45, 0.3) !important;
+  border-color: rgba(74, 222, 128, 0.38) !important;
+  color: #bbf7d0 !important;
+}
+
+html[data-theme="dark"] [style*="background: rgb(254, 243, 199)"],
+html[data-theme="dark"] [style*="background: rgb(255, 251, 235)"] {
+  background: rgba(146, 64, 14, 0.28) !important;
+  border-color: rgba(251, 191, 36, 0.42) !important;
+  color: #fde68a !important;
+}
+
+html[data-theme="dark"] [style*="background: rgb(255, 245, 245)"],
+html[data-theme="dark"] [style*="background: rgb(254, 242, 242)"],
+html[data-theme="dark"] [style*="background: rgb(254, 226, 226)"] {
+  background: rgba(127, 29, 29, 0.32) !important;
+  border-color: rgba(248, 113, 113, 0.42) !important;
+  color: #fecaca !important;
+}
+
+html[data-theme="dark"] [style*="color: rgb(124, 45, 18)"],
+html[data-theme="dark"] [style*="color: rgb(194, 65, 12)"] {
+  color: #fdba74 !important;
+}
+
+html[data-theme="dark"] [style*="color: rgb(22, 101, 52)"],
+html[data-theme="dark"] [style*="color: rgb(21, 128, 61)"] {
+  color: #86efac !important;
+}
+
+html[data-theme="dark"] [style*="color: rgb(146, 64, 14)"] {
+  color: #fde68a !important;
+}
+
+html[data-theme="dark"] [style*="color: rgb(13, 27, 46)"],
+html[data-theme="dark"] [style*="color: rgb(15, 23, 42)"],
+html[data-theme="dark"] [style*="color: rgb(18, 28, 42)"] {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="dark"] [style*="color: rgb(51, 65, 85)"],
+html[data-theme="dark"] [style*="color: rgb(55, 65, 81)"],
+html[data-theme="dark"] [style*="color: rgb(71, 85, 105)"] {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] [style*="color: rgb(107, 114, 128)"],
+html[data-theme="dark"] [style*="color: rgb(100, 116, 139)"] {
+  color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] [style*="color: rgb(27, 66, 133)"] {
+  color: #60a5fa !important;
+}
+
+/* Override any hardcoded #ffffff cards in search/jadwal/seats/payment/pesanan/ticket/login/register */
+html[data-theme="dark"] .search-card,
+html[data-theme="dark"] .search-filter-card,
+html[data-theme="dark"] .search-bar-card,
+html[data-theme="dark"] .jdw-card,
+html[data-theme="dark"] .jdw-filter-card,
+html[data-theme="dark"] .jdw-table-card,
+html[data-theme="dark"] .seat-card,
+html[data-theme="dark"] .seat-summary-card,
+html[data-theme="dark"] .pay-card,
+html[data-theme="dark"] .pay-summary-card,
+html[data-theme="dark"] .ord-card,
+html[data-theme="dark"] .tkt-card,
+html[data-theme="dark"] .login-card,
+html[data-theme="dark"] .reg-card {
+  background-color: #111b2e;
+  border-color: #253552;
+  color: #f1f5f9;
+}
+
+
+/* Jadwal & Terminal Directory Dark Mode */
+html[data-theme="dark"] .jdw-search-card,
+html[data-theme="dark"] .jdw-details-card,
+html[data-theme="dark"] .jdw-locations-card,
+html[data-theme="dark"] .jdw-facility-item,
+html[data-theme="dark"] .jdw-btn-use-route:not(.primary),
+html[data-theme="dark"] .jdw-btn-gmaps {
+  background: #111b2e;
+  border-color: #253552;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .jdw-input-box,
+html[data-theme="dark"] .jdw-terminal-search-wrap,
+html[data-theme="dark"] .jdw-terminal-province-wrap,
+html[data-theme="dark"] .jdw-location-tab-btn:not(.active),
+html[data-theme="dark"] .jdw-terminal-chip,
+html[data-theme="dark"] .jdw-facilities-box,
+html[data-theme="dark"] .jdw-terminal-empty {
+  background: #162238;
+  border-color: #253552;
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] .jdw-terminal-name,
+html[data-theme="dark"] .jdw-details-title,
+html[data-theme="dark"] .jdw-checkpoint-info h4,
+html[data-theme="dark"] .jdw-facility-text h5,
+html[data-theme="dark"] .jdw-terminal-search-input,
+html[data-theme="dark"] .jdw-terminal-province-select {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .jdw-terminal-address,
+html[data-theme="dark"] .jdw-checkpoint-info p,
+html[data-theme="dark"] .jdw-terminal-count-pill {
+  color: #94a3b8;
+}
+
+html[data-theme="dark"] .jdw-terminal-map-interactive {
+  border-color: #253552;
+  background: #0f172a;
+}
+
+html[data-theme="dark"] .jdw-map-ctrl-btn:not(.active) {
+  background: rgba(17, 27, 46, 0.94);
+  border-color: #2e456e;
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .jdw-terminal-province-select option {
+  background: #111b2e;
+  color: #f1f5f9;
+}

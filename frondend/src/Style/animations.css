@@ -1,0 +1,229 @@
+/**
+ * ============================================================
+ * GOVIA — Global Animations & Transitions Library
+ * animations.css — dipakai di seluruh halaman
+ * ============================================================
+ * Palet Warna Baru (Light Theme foto ke-2):
+ *   Background   : #f1f5f9
+ *   Card         : #ffffff
+ *   Primary Navy : #1B4285
+ *   Accent Blue  : #2563eb
+ *   Orange CTA   : #f97316
+ *   Text Dark    : #0f172a
+ *   Text Muted   : #64748b
+ *   Border       : #e2e8f0
+ * ============================================================
+ */
+
+/* ── 1. KEYFRAMES ─────────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+  0%   { transform: scale(0.7);  opacity: 0; }
+  55%  { transform: scale(1.05); opacity: 1; }
+  75%  { transform: scale(0.97); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes pulseRing {
+  0%   { transform: scale(1);   opacity: 1; }
+  60%  { transform: scale(1.6); opacity: 0.3; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes spinCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(37,99,235,0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(37,99,235,0); }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes underlineGrow {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* ripple klik tombol */
+@keyframes ripple {
+  to { transform: scale(3); opacity: 0; }
+}
+
+/* ── 2. UTILITY ANIMATION CLASSES ────────────────────────── */
+
+.anim-fade-up    { animation: fadeInUp   0.55s cubic-bezier(.22,.68,0,1.2) both; }
+.anim-fade-left  { animation: fadeInLeft  0.5s cubic-bezier(.22,.68,0,1.2) both; }
+.anim-fade-right { animation: fadeInRight 0.5s cubic-bezier(.22,.68,0,1.2) both; }
+.anim-zoom-in    { animation: zoomIn      0.45s cubic-bezier(.22,.68,0,1.2) both; }
+.anim-slide-down { animation: slideDown   0.4s ease-out both; }
+.anim-slide-up   { animation: slideUp     0.45s cubic-bezier(.22,.68,0,1.2) both; }
+.anim-bounce-in  { animation: bounceIn    0.55s cubic-bezier(.22,.68,0,1.2) both; }
+.anim-float      { animation: floatY      3s ease-in-out infinite; }
+.anim-spin       { animation: spinCW      1s linear infinite; }
+.anim-glow       { animation: glowPulse   2s ease-in-out infinite; }
+
+/* Stagger delays */
+.anim-d1 { animation-delay: 0.08s; }
+.anim-d2 { animation-delay: 0.16s; }
+.anim-d3 { animation-delay: 0.24s; }
+.anim-d4 { animation-delay: 0.32s; }
+.anim-d5 { animation-delay: 0.40s; }
+.anim-d6 { animation-delay: 0.50s; }
+.anim-d7 { animation-delay: 0.60s; }
+.anim-d8 { animation-delay: 0.72s; }
+
+/* ── 3. SKELETON LOADING ─────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 0.5rem;
+}
+
+/* ── 4. HOVER LIFT CARD ──────────────────────────────────── */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(.22,.68,0,1.2),
+              box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(27,66,133,0.13);
+}
+
+/* ── 5. UNDERLINE LINK ANIMASI ───────────────────────────── */
+.link-anim {
+  position: relative;
+  text-decoration: none;
+}
+.link-anim::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  height: 2px; width: 0;
+  background: #2563eb;
+  border-radius: 2px;
+  transition: width 0.28s ease;
+}
+.link-anim:hover::after { width: 100%; }
+
+/* ── 6. BUTTON PRESS SCALE ──────────────────────────────── */
+.btn-press {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-press:active {
+  transform: scale(0.97);
+}
+.btn-press::after {
+  content: '';
+  position: absolute;
+  inset: 50% 50%;
+  background: rgba(255,255,255,0.28);
+  border-radius: 50%;
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+.btn-press:active::after {
+  inset: -50%;
+  animation: ripple 0.5s ease;
+}
+
+/* ── 7. FADE PAGE TRANSITION ────────────────────────────── */
+.page-enter {
+  animation: fadeInUp 0.45s cubic-bezier(.22,.68,0,1.2) both;
+}
+
+/* ── 8. GLOBAL CSS VARIABLES (LIGHT THEME) ──────────────── */
+:root {
+  --g-bg:          #f1f5f9;
+  --g-surface:     #ffffff;
+  --g-surface-2:   #f8fafc;
+  --g-border:      #e2e8f0;
+  --g-border-blue: #bfdbfe;
+
+  --g-navy:        #1B4285;
+  --g-navy-dark:   #0f2a55;
+  --g-navy-light:  #eff6ff;
+  --g-blue:        #2563eb;
+  --g-blue-hover:  #1d4ed8;
+  --g-blue-light:  #dbeafe;
+
+  --g-orange:       #f97316;
+  --g-orange-hover: #ea6c10;
+  --g-orange-light: #fff7ed;
+
+  --g-text:        #0f172a;
+  --g-text-sub:    #334155;
+  --g-text-muted:  #64748b;
+  --g-text-light:  #94a3b8;
+
+  --g-green:       #16a34a;
+  --g-green-light: #dcfce7;
+  --g-red:         #dc2626;
+  --g-red-light:   #fee2e2;
+
+  --g-shadow-xs: 0 1px 3px rgba(15,23,42,0.06);
+  --g-shadow-sm: 0 2px 8px rgba(27,66,133,0.08);
+  --g-shadow-md: 0 6px 20px rgba(27,66,133,0.11);
+  --g-shadow-lg: 0 16px 40px rgba(27,66,133,0.14);
+  --g-shadow-xl: 0 24px 64px rgba(15,23,42,0.18);
+
+  --g-radius-sm:   0.5rem;
+  --g-radius-md:   0.875rem;
+  --g-radius-lg:   1.25rem;
+  --g-radius-xl:   1.75rem;
+  --g-radius-full: 9999px;
+}
